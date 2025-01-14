@@ -22,7 +22,9 @@
 ##################################################
 
 # import name_of_module
-
+    #Not sure what this is about. If you knowm feel free to fix it
+    import math
+    
 
 ##################################################
 # Function Definitions
@@ -38,13 +40,14 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
     100.0
     >>> present_value(121, 0.10, 2)
     100.0
-    >>> next example goes here
+    >>> present_value(134, 0.10, 3)
+    100.7
     """
-    answer = code_goes_here
+    answer = cash_flow / (1 + interest_rate) ** num_yrs
 
-    return answer
+    return round(answer, 1)
 
-
+    # PV = CF / (1 + r) ** t
 
 # Define the rest of your functions for Exercises 2-5.
 
@@ -82,7 +85,6 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
 
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 1.")
-
 print("#" + 50*"-")
 print("Exercise 1, Example 1:")
 print("Evaluating present_value(110, 0.10, 1)")
@@ -99,10 +101,9 @@ print("Got: " + str(present_value(121, 0.10, 2)))
 
 print("#" + 50*"-")
 print("Exercise 1, Example 3:")
-print("Exercise 1, Example 3:")
 print("Evaluating present_value(132, 0.10, 3)")
-print("Expected: " + str(100.0))
-print("Got: " + str(present_value(132, 0.10, 3)))
+print("Expected: " + str(100.7))
+print("Got: " + str(present_value(134, 0.10, 3)))
 
 
 print("#" + 50*"-")
