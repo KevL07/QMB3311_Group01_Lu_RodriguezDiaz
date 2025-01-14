@@ -4,9 +4,9 @@
 #
 # QMB 3311: Python for Business Analytics
 #
-# Name:
+# Name: Kevin Lu and Frances Rodriguez Diaz
 #
-# Date:
+# Date:1/20/2025
 #
 ##################################################
 #
@@ -48,9 +48,27 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
 
 # Define the rest of your functions for Exercises 2-5.
 
+# Exercise 2
+
+#def
 
 
 
+# Exercise 3
+
+#def
+
+
+
+# Exercise 4
+
+#def
+
+
+
+# Exercise 5
+
+#def
 
 
 
@@ -81,13 +99,15 @@ print("Got: " + str(present_value(121, 0.10, 2)))
 
 print("#" + 50*"-")
 print("Exercise 1, Example 3:")
-# Code goes here.
-
+print("Exercise 1, Example 3:")
+print("Evaluating present_value(132, 0.10, 3)")
+print("Expected: " + str(100.0))
+print("Got: " + str(present_value(132, 0.10, 3)))
 
 
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 2.")
-
+# Code goes here.
 
 # ...
 
