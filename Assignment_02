@@ -20,5 +20,5 @@ def total_cost(units,fixed_cost,x):
     x = units ** 2
     cost = x * (units ** 2) + fixed_cost
     return cost
-print(total_cost(100,50,2))
+print(total_cost())
 
