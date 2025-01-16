@@ -22,7 +22,6 @@
 ##################################################
 
 # import name_of_module
-    #Not sure what this is about. If you knowm feel free to fix it
     import math
     
 
