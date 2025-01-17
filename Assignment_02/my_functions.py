@@ -60,7 +60,7 @@ print(future_value())
 
 # Exercise 3
 
-def total_revenue(price:float, units) -> float:
+def total_revenue(price:float, units:float) -> float:
     revenue = price * units 
     return round(revenue,2)
 print(total_revenue())
@@ -68,7 +68,7 @@ print(total_revenue())
 
 # Exercise 4
 
-def total_cost(units,x:float, fixed_cost:float) -> float:
+def total_cost(units:float, x:float, fixed_cost:float) -> float:
     cost = x * (units ** 2) + fixed_cost
     return round(cost,2)
 print(total_cost())
