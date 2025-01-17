@@ -51,27 +51,35 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
 # Define the rest of your functions for Exercises 2-5.
 
 # Exercise 2
-def future_value(cash_flowL float, )
-#def
+def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
+    value = cash_flow * (1 + discount_rate) ** years
+    return round(value,2)
+print(future_value())
 
 
 
 # Exercise 3
 
-#def
-
+def total_revenue(price:float, units) -> float:
+    revenue = price * units 
+    return round(revenue,2)
+print(total_revenue())
 
 
 # Exercise 4
 
-#def
-
+def total_cost(units,x:float, fixed_cost:float) -> float:
+    cost = x * (units ** 2) + fixed_cost
+    return round(cost,2)
+print(total_cost())
 
 
 # Exercise 5
 
-#def
-
+def CESutility(x:float, y:float, r:float) -> float:
+    utility = (pow(x,r) + pow(y,r)) ** 1/r
+    return round(utility,2)
+print(CESutility())
 
 
 ##################################################
