@@ -84,7 +84,7 @@ def total_revenue(price:float, units:float) -> float:
     """
     revenue = price * units 
     return round(revenue,2)
-print(total_revenue(10,100))
+print(total_revenue())
 
 # TR = P * Q
 
@@ -158,9 +158,33 @@ print("Got: " + str(present_value(134, 0.10, 3)))
 
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 2.")
+
 # Code goes here.
 
-# ...
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating future_value(100,0.05,5)")
+print("Expected: " + str(127.63))
+print("Got: " + str(future_value(100,0.05,5)))
+
+
+print("#" + 50*"-")
+print("Exercise 2, Example 2:")
+print("Evaluating present_value(121, 0.10, 2)")
+print("Expected: " + str(100.0))
+print("Got: " + str(present_value(121, 0.10, 2)))
+
+
+print("#" + 50*"-")
+print("Exercise 2, Example 3:")
+print("Evaluating present_value(132, 0.10, 3)")
+print("Expected: " + str(100.7))
+print("Got: " + str(present_value(134, 0.10, 3)))
+
+
+
 
 
 # Continue with the rest of your examples.
