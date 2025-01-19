@@ -64,7 +64,7 @@ def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
     """
     value = cash_flow * (1 + discount_rate) ** years
     return round(value,2)
-print(future_value())
+#print(future_value())
 
 # FV = PV * (1 + r) ** t
 
@@ -84,7 +84,7 @@ def total_revenue(price:float, units:float) -> float:
     """
     revenue = price * units 
     return round(revenue,2)
-print(total_revenue())
+#print(total_revenue())
 
 # TR = P * Q
 
@@ -103,7 +103,7 @@ def total_cost(units:float, x:float, fixed_cost:float) -> float:
     """
     cost = x * (units ** 2) + fixed_cost
     return round(cost,2)
-print(total_cost())
+#print(total_cost())
 
 
 # Exercise 5
@@ -122,7 +122,7 @@ def CESutility(x:float, y:float, r:float) -> float:
     """
     utility = (pow(x,r) + pow(y,r)) ** (1/r)
     return round(utility,2)
-print(CESutility())
+#print(CESutility())
 
 
 ##################################################
@@ -156,10 +156,8 @@ print("Expected: " + str(100.7))
 print("Got: " + str(present_value(134, 0.10, 3)))
 
 
-print("#" + 50*"-")
-print("Testing my Examples for Exercise 2.")
-
 # Code goes here.
+# Exercise 2 examples and results
 
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 2.")
@@ -172,19 +170,95 @@ print("Got: " + str(future_value(100,0.05,5)))
 
 print("#" + 50*"-")
 print("Exercise 2, Example 2:")
-print("Evaluating present_value(121, 0.10, 2)")
-print("Expected: " + str(100.0))
-print("Got: " + str(present_value(121, 0.10, 2)))
+print("Evaluating future_value(100,0.05,10)")
+print("Expected: " + str(162.89))
+print("Got: " + str(future_value(100,0.05,10)))
 
 
 print("#" + 50*"-")
 print("Exercise 2, Example 3:")
-print("Evaluating present_value(132, 0.10, 3)")
-print("Expected: " + str(100.7))
-print("Got: " + str(present_value(134, 0.10, 3)))
+print("Evaluating future_value(500,0.15,2.5)")
+print("Expected: " + str(709.82))
+print("Got: " + str(future_value(500.5,0.15,2.5)))
 
 
+# Exercise 3 examples and results
 
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating total_revenue(10,100))")
+print("Expected: " + str(1000.00))
+print("Got: " + str(total_revenue(10,100)))
+
+
+print("#" + 50*"-")
+print("Exercise 2, Example 2:")
+print("Evaluating total_revenue(5.25,40))")
+print("Expected: " + str(210.00))
+print("Got: " + str(total_revenue(5.25,40)))
+
+
+print("#" + 50*"-")
+print("Exercise 2, Example 3:")
+print("Evaluating total_revenue(10,100))")
+print("Expected: " + str(77.07))
+print("Got: " + str(total_revenue(7.34,10.5)))
+
+#Exercise 4 examples and results
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating total_cost(10,1,50))")
+print("Expected: " + str(150.00))
+print("Got: " + str(total_cost(10,1,50)))
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 2:")
+print("Evaluating total_cost(25.25,2.5,125.5))")
+print("Expected: " + str(1719.41))
+print("Got: " + str(total_cost(25.25,2.5,125.5)))
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 3:")
+print("Evaluating total_cost(1,0.5,100.5))")
+print("Expected: " + str(101.00))
+print("Got: " + str(total_cost(1,0.5,100.5)))
+
+#Exercise 5 examples and results
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating CESutility(1,2,5)")
+print("Expected: " + str(2.01))
+print("Got: " + str(CESutility(1,2,5)))
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating CESutility(2,2,2)")
+print("Expected: " + str(2.83))
+print("Got: " + str(CESutility(2,2,2)))
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating CESutility(.5,2.5,4.25)")
+print("Expected: " + str(2.5))
+print("Got: " + str(CESutility(.5,2.5,4.25)))
+      
+      
 
 
 # Continue with the rest of your examples.
