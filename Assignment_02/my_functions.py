@@ -105,6 +105,7 @@ def total_cost(units:float, x:float, fixed_cost:float) -> float:
     return round(cost,2)
 #print(total_cost())
 
+# TC = x * (Unit**2) + FC
 
 # Exercise 5
 
@@ -124,6 +125,7 @@ def CESutility(x:float, y:float, r:float) -> float:
     return round(utility,2)
 #print(CESutility())
 
+# utility = (x**r)+(y**r) ** (1/r)
 
 ##################################################
 # Run the examples to test these functions
