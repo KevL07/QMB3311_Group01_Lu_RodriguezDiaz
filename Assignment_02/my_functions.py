@@ -93,22 +93,26 @@ def total_revenue(units:float, price:float) -> float:
 
 # Exercise 4
 
-def total_cost(units:float, x:float, fixed_cost:float) -> float:
-    """Returns the total cost of a firm given the fixed 
-    cost, a constant variable called x, and number of units.
-    
->>> total_cost(10,1,50)
-    150.00 
->>> total_cost(25.25,2.5,125.5)   
-    1719.41
->>> total_cost(1,0.5,100.5) 
-    101.00  
+def total_cost(units:float, fixed_cost:float, x:float) -> float:
+    """Returns the total cost incurred by a firm to produce a product given the
+    number of units produced, the given fixed cost, and a constant variable 
+    called x.
+   
+>>> total_cost(10.5,50,1.5)
+    215.4
+>>> total_cost(11.2,50,1.3)   
+    213.1
+>>> total_cost(1,50,0.5) 
+    50.5 
     """
-    cost = x * (units ** 2) + fixed_cost
-    return round(cost,2)
-#print(total_cost())
+    cost = fixed_cost + x * (units ** 2)
+    
+    return round(cost, 1)
+    #print(total_cost())
 
-# TC = x * (Unit**2) + FC
+    # TC(q,a,b) = b + aq ** 2
+    # TC = FC + x * (units ** 2)
+
 
 # Exercise 5
 
@@ -200,14 +204,14 @@ print("Got: " + str(total_revenue(100.5,10.2)))
 
 print("#" + 50*"-")
 print("Exercise 3, Example 2:")
-print("Evaluating total_revenue(40,5.25))")
+print("Evaluating total_revenue(40,5.25)")
 print("Expected: " + str(210.0))
 print("Got: " + str(total_revenue(40,5.25)))
 
 
 print("#" + 50*"-")
 print("Exercise 3, Example 3:")
-print("Evaluating total_revenue(10.5,7.34))")
+print("Evaluating total_revenue(10.5,7.34)")
 print("Expected: " + str(77.1))
 print("Got: " + str(total_revenue(7.34,10.5)))
 
@@ -216,22 +220,22 @@ print("Got: " + str(total_revenue(7.34,10.5)))
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 4.")
 print("#" + 50*"-")
-print("Exercise42, Example 1:")
-print("Evaluating total_cost(10,1,50))")
-print("Expected: " + str(150.00))
-print("Got: " + str(total_cost(10,1,50)))
+print("Exercise 4, Example 1:")
+print("Evaluating total_cost(10.5,50,1.5)")
+print("Expected: " + str(215.4))
+print("Got: " + str(total_cost(10.5,50,1.5)))
 
 print("#" + 50*"-")
 print("Exercise 4, Example 2:")
-print("Evaluating total_cost(25.25,2.5,125.5))")
-print("Expected: " + str(1719.41))
-print("Got: " + str(total_cost(25.25,2.5,125.5)))
+print("Evaluating total_cost(11.2,50,1.3))")
+print("Expected: " + str(213.1))
+print("Got: " + str(total_cost(11.2,50,1.3)))
 
 print("#" + 50*"-")
 print("Exercise 4, Example 3:")
-print("Evaluating total_cost(1,0.5,100.5))")
-print("Expected: " + str(101.00))
-print("Got: " + str(total_cost(1,0.5,100.5)))
+print("Evaluating total_cost(1,50,0.5)")
+print("Expected: " + str(50.5))
+print("Got: " + str(total_cost(1,50,0.5)))
 
 #Exercise 5 examples and results
 
