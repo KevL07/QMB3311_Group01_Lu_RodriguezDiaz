@@ -125,8 +125,8 @@ def CESutility(x:float, y:float, r:float) -> float:
     2.01
 >>> CESutility(2,2,2)
     2.83
->>> CESutility(.5,2.5,4.25)
-    2.5 
+>>> CESutility(3,2.5,4.25)
+    3.28 
     """
     utility = (pow(x,r) + pow(y,r)) ** (1/r)
     
@@ -256,9 +256,9 @@ print("Got: " + str(CESutility(2,2,2)))
 
 print("#" + 50*"-")
 print("Exercise 5, Example 3:")
-print("Evaluating CESutility(.5,2.5,4.25)")
-print("Expected: " + str(2.5))
-print("Got: " + str(CESutility(.5,2.5,4.25)))
+print("Evaluating CESutility(3,2.5,4.25)")
+print("Expected: " + str(3.28))
+print("Got: " + str(CESutility(3,2.5,4.25)))
       
       
 
