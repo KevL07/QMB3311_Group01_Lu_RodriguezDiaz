@@ -52,8 +52,8 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
 
 # Exercise 2
 def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
-    """Returns the future cash value of a present cash flow, discounted a certain number of
-    years at an interest rate.
+    """Returns the future value of a cash_flow, expected a certain number of
+    years from now at a discount_rate.
     
 >>> future_value(100,0.05,5)
     127.63
@@ -63,10 +63,11 @@ def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
     709.82
     """
     value = cash_flow * (1 + discount_rate) ** years
-    return round(value,2)
-#print(future_value())
+   
+    return round(value, 2)
+    #print(future_value())
 
-# FV = PV * (1 + r) ** t
+    # FV = PV * (1 + r) ** t
 
 
 # Exercise 3
