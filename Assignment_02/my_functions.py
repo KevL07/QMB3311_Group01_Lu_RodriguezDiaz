@@ -32,7 +32,7 @@
 # Exercise 1
 
 def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> float:
-    """Return the present value of cash_flow expected num_yrs from now
+    """Returns the present value of cash_flow expected num_yrs from now
     discounted at interest_rate.
 
     >>> present_value(110, 0.10, 1)
@@ -118,7 +118,7 @@ def total_cost(units:float, fixed_cost:float, x:float) -> float:
 
 def CESutility(x:float, y:float, r:float) -> float:
     """Returns the theoretical degree of satisfaction gained by a consumer from
-    the consumption of a certain number of good x and good y, considering the 
+    the consumption of a certain number of good x and y considering r, the 
     degree to which the two goods are complements or subsitutes.
     
 >>> CESutility(1,2,5)
