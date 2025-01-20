@@ -51,6 +51,7 @@ def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> flo
 # Define the rest of your functions for Exercises 2-5.
 
 # Exercise 2
+
 def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
     """Returns the future value of a cash_flow, expected a certain number of
     years from now at a discount_rate.
@@ -72,22 +73,23 @@ def future_value(cash_flow:float, discount_rate:float, years:float) -> float:
 
 # Exercise 3
 
-def total_revenue(price:float, units:float) -> float:
-    """Returns the total revenue of a firm given the price 
-    and number of units.
+def total_revenue(units:float, price:float) -> float:
+    """Returns the total_revenue of a firm at a given price 
+    and varying units.
     
->>> total_revenue(10,100)
-    1000.00   
->>> total_revenue(5.25,40)   
-    210
->>> total_revenue(7.34,10.5) 
-    77.07  
+>>> total_revenue(100.5,10.2)
+    1025.1  
+>>> total_revenue(40,5.25)   
+    210.0
+>>> total_revenue(10.5,7.34) 
+    77.1  
     """
-    revenue = price * units 
-    return round(revenue,2)
-#print(total_revenue())
+    revenue = units * price 
+    
+    return round(revenue, 1)
+    #print(total_revenue())
 
-# TR = P * Q
+    # TR = Q * P
 
 # Exercise 4
 
@@ -191,22 +193,22 @@ print("#" + 50*"-")
 print("Testing my Examples for Exercise 3.")
 print("#" + 50*"-")
 print("Exercise 3, Example 1:")
-print("Evaluating total_revenue(10,100))")
-print("Expected: " + str(1000.00))
-print("Got: " + str(total_revenue(10,100)))
+print("Evaluating total_revenue(100.5,10.2)")
+print("Expected: " + str(1025.1))
+print("Got: " + str(total_revenue(100.5,10.2)))
 
 
 print("#" + 50*"-")
 print("Exercise 3, Example 2:")
-print("Evaluating total_revenue(5.25,40))")
-print("Expected: " + str(210.00))
-print("Got: " + str(total_revenue(5.25,40)))
+print("Evaluating total_revenue(40,5.25))")
+print("Expected: " + str(210.0))
+print("Got: " + str(total_revenue(40,5.25)))
 
 
 print("#" + 50*"-")
 print("Exercise 3, Example 3:")
-print("Evaluating total_revenue(10,100))")
-print("Expected: " + str(77.07))
+print("Evaluating total_revenue(10.5,7.34))")
+print("Expected: " + str(77.1))
 print("Got: " + str(total_revenue(7.34,10.5)))
 
 #Exercise 4 examples and results
