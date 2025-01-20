@@ -117,22 +117,23 @@ def total_cost(units:float, fixed_cost:float, x:float) -> float:
 # Exercise 5
 
 def CESutility(x:float, y:float, r:float) -> float:
-    """Returns the amount of utility gained from consuming
-    good x and good y given the degree to which the two
-    goods are complements or subsitutes.
+    """Returns the theoretical degree of satisfaction gained by a consumer from
+    the consumption of a certain number of good x and good y, considering the 
+    degree to which the two goods are complements or subsitutes.
     
->>>CESutility(1,2,5)
-   2.01
->>>CESutility(2,2,2)
-   2.83
->>>CESutility(.5,2.5,4.25)
-   2.5 
+>>> CESutility(1,2,5)
+    2.01
+>>> CESutility(2,2,2)
+    2.83
+>>> CESutility(.5,2.5,4.25)
+    2.5 
     """
     utility = (pow(x,r) + pow(y,r)) ** (1/r)
-    return round(utility,2)
-#print(CESutility())
+    
+    return round(utility, 2)
+    #print(CESutility())
 
-# utility = (x**r)+(y**r) ** (1/r)
+    # utility = (x**r)+(y**r) ** (1/r)
 
 ##################################################
 # Run the examples to test these functions
