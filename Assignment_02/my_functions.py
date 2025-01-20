@@ -94,16 +94,16 @@ def total_revenue(units:float, price:float) -> float:
 # Exercise 4
 
 def total_cost(units:float, fixed_cost:float, x:float) -> float:
-    """Returns the total cost incurred by a firm to produce a product given the
-    number of units produced, the given fixed cost, and a constant variable 
-    called x.
+    """Returns the total cost incurred by a firm to produce a product 
+    considering the number of units produced, the given fixed cost, and a 
+    constant variable called x.
    
 >>> total_cost(10.5,50,1.5)
-    215.4
->>> total_cost(11.2,50,1.3)   
-    213.1
->>> total_cost(1,50,0.5) 
-    50.5 
+    165.4
+>>> total_cost(11.2,50,1.5)   
+    238.2
+>>> total_cost(1,50,1.5) 
+    51.5 
     """
     cost = fixed_cost + x * (units ** 2)
     
@@ -228,15 +228,15 @@ print("Got: " + str(total_cost(10.5,50,1.5)))
 
 print("#" + 50*"-")
 print("Exercise 4, Example 2:")
-print("Evaluating total_cost(11.2,50,1.3))")
-print("Expected: " + str(213.1))
-print("Got: " + str(total_cost(11.2,50,1.3)))
+print("Evaluating total_cost(11.2,50,1.5)")
+print("Expected: " + str(238.2))
+print("Got: " + str(total_cost(11.2,50,1.5)))
 
 print("#" + 50*"-")
 print("Exercise 4, Example 3:")
-print("Evaluating total_cost(1,50,0.5)")
-print("Expected: " + str(50.5))
-print("Got: " + str(total_cost(1,50,0.5)))
+print("Evaluating total_cost(1,50,1.5)")
+print("Expected: " + str(51.5))
+print("Got: " + str(total_cost(1,50,1.5)))
 
 #Exercise 5 examples and results
 
