@@ -87,6 +87,8 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     # Checks if the consumer basket of goods costs more than wealth
     if(p_x * x + p_y * y) > w:
         return None
+    if r<= 0:
+        return None
     
     return CESutility_valid(x, y, r)
     
