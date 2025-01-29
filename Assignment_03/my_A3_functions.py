@@ -71,6 +71,15 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
 def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:float) -> float:
     """Evaluates whether a consumer's mix of goods x and y are in budget 
     considering the specific customer's wealth (w) alongside prices p_x and p_y.
+    
+>>> CESutility_in_budget(2,3,3,-1,2,20)
+    None
+>>> CESutility_in_budget(0,2,4,1,-3,20)
+    None
+>>> CESutility_in_budget(1,2,-5,3,4,20)
+    None
+    >>> CESutility_in_budget(1,2,4,4,4,20)
+    
     """
     # Checks if prices are negative
     if p_x < 0 or p_y < 0:
@@ -78,6 +87,8 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     # Checks if the consumer basket of goods costs more than wealth
     if(p_x * x + p_y * y) > w:
         return None
+    
+    return CESutility_valid(x, y, r)
     
 # Only function definitions above this point. 
 
