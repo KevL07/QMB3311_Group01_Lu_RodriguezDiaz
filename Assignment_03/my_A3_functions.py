@@ -69,19 +69,19 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
 # Define the rest of your functions for Exercises 2-4.
 
 def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:float) -> float:
-   """Evaluates whether a consumer's mix of goods x and y are in budget 
-   considering the specific customer's wealth (w) alongside prices p_x and p_y.
-
-    CESutility_in_budget(1,2,5,)
-        None
-    >>> CESutility_valid(2,-2,2)
-        None
-    >>> CESutility_valid(3,2.5,0)
-        None
-    >>> CESutility_valid(3,2.25,4.25)
-        3.19
-        """
- 
+    """Evaluates whether a consumer's mix of goods x and y are in budget 
+    considering the specific customer's wealth (w) alongside prices p_x and p_y.
+   
+>>> CESutility_in_budget(1,-2,5,4,6,25)
+    None
+>>> CESutility_in_budget(2,2,2,-3,5,30)
+    None
+>>> CESutility_in_budget(3,2.5,0)
+    None
+>>> CESutility_valid(3,2.25,4.25)
+    3.19
+    """
+        
      # w ≥ p_x*x + p_y*y
      
 # Only function definitions above this point. 
