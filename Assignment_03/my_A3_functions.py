@@ -33,8 +33,7 @@
 # Only function definitions here - no other calculations. 
 
 # Exercise 1
-    
-def CESutility_valid(x:float, y:float, r:float) -> float:
+def CESutility_valid(x:float, y:float,r:float) -> float:
     """Returns the theoretical degree of satisfaction gained by a consumer from
     the consumption of a non-negative amount of good x and y considering r, the
     positive degree to which the two goods are complements or subsitutes.
@@ -48,21 +47,25 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
 >>> CESutility_valid(3,2.5,4.25)
     3.28
     """
+    error = False
     if x < 0:
+        error = True
         print("x cannot be negative.")
-        return None
-    elif y < 0:
-        print("y cannot be negative.")
-        return None
-    elif r <=0:
+    if y < 0:
+        error = True
+        print("y cannot be negative.")     
+    if r <= 0:
+        error = True
         print("r must be positive.")
-        return None 
+    if error == True:
+        return None
+    else:
+        ans = (pow(x,r) + pow(y,r)) ** (1/r)
+        return round(ans,2)
     
-    utility = (pow(x,r) + pow(y,r)) ** (1/r)
-    return round(utility, 2)
-    #print(CESutility_valid())
-
-    # utility = (x**r)+(y**r) ** (1/r)
+    # utility = (x**r) + (y**r) ** (1/r)
+    # print(CESutility_valid())
+    
 
 # ...
 
