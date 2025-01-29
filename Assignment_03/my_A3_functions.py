@@ -78,7 +78,7 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     None
 >>> CESutility_in_budget(3,2.5,0)
     None
->>> CESutility_valid(3,2.25,4.25)
+>>> CESutility_budget(3,2.25,4.25)
     3.19
     """
         
