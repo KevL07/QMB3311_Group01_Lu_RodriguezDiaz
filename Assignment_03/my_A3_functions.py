@@ -72,15 +72,13 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     """Evaluates whether a consumer's mix of goods x and y are in budget 
     considering the specific customer's wealth (w) alongside prices p_x and p_y.
     """
-    
+    # Checks if prices are negative
     if p_x < 0 or p_y < 0:
-        print("Price cannot be negative. Please enter a non-negative price.")
         return None
-    if w < 0:
-        print("Wealth cannot be negative. Please enter a non-negative amount.")
-   
-
-     
+    # Checks if the consumer basket of goods costs more than wealth
+    if(p_x * x + p_y * y) > w:
+        return None
+    
 # Only function definitions above this point. 
 
 
