@@ -49,13 +49,13 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
     3.19
     """
     if x < 0:
-        print("x cannot be negative. Please enter a non-negative amount.")
+        print("x cannot be negative.")
         return None
     elif y < 0:
-        print("y cannot be negative. Please enter a non-negative amount.")
+        print("y cannot be negative.")
         return None
     elif r <=0:
-        print("r cannot be negative or zero. Please enter a positive number.")
+        print("r must be positive.")
         return None 
     
     utility = (pow(x,r) + pow(y,r)) ** (1/r)
@@ -78,8 +78,8 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     None
 >>> CESutility_in_budget(1,2,-5,3,4,20)
     None
-    >>> CESutility_in_budget(1,2,4,4,4,20)
-    
+    >>> CESutility_in_budget(1.25,2,4,4,4,20)
+    5.11
     """
     # Checks if prices are negative
     if p_x < 0 or p_y < 0:
@@ -89,6 +89,8 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
         return None
     
     return CESutility_valid(x, y, r)
+    
+    # utility = (x**r)+(y**r) ** (1/r)
     
 # Only function definitions above this point. 
 
@@ -106,19 +108,19 @@ print("Testing my Examples for Exercise 1.")
 print("#" + 50*"-")
 print("Exercise 1, Example 1:")
 print("Evaluating CESutility_valid(-1,2,5)")
-print("Expected: " + str("x cannot be negative. Please enter a non-negative number."))
+print("Expected: " + str("x cannot be negative."))
 print("Got: " + str(CESutility_valid(-1,2,5)))
 
 print("#" + 50*"-")
 print("Exercise 1, Example 2:")
 print("Evaluating CESutility_valid(2,-2,2)")
-print("Expected: " + str("y cannot be negative. Please enter a non-negative number."))
+print("Expected: " + str("y cannot be negative."))
 print("Got: " + str(CESutility_valid(2,-2,2)))
 
 print("#" + 50*"-")
 print("Exercise 1, Example 3:")
 print("Evaluating CESutility_valid(3,2.5,0)")
-print("Expected: " + str("r cannot be negative or zero. Please enter a positive number."))
+print("Expected: " + str("r must be positive."))
 print("Got: " + str(CESutility_valid(3,2.5,0)))
 
 print("#" + 50*"-")
@@ -127,6 +129,33 @@ print("Evaluating CESutility_valid(3,2.25,4.25)")
 print("Expected: " + str(3.19))
 print("Got: " + str(CESutility_valid(3,2.25,4.25)))
 
+#Exercise 2 examples and results
+    
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating CESutility_in_budget(2,3,3,-1,2,20)")
+print("Expected: " + str("Price cannot be negative."))
+print("Got: " + str(CESutility_in_budget(2,3,3,-1,2,20)))
+
+print("#" + 50*"-")
+print("Exercise 2, Example 2:")
+print("Evaluating CESutility_in_budget(0,2,4,1,-3,20)")
+print("Expected: " + str("Price cannot be negative."))
+print("Got: " + str(CESutility_in_budget(0,2,4,1,-3,20)))
+
+print("#" + 50*"-")
+print("Exercise 3, Example 2:")
+print("Evaluating CESutility_in_budget(1,2,-5,3,4,20)")
+print("Expected: " + str("r must be positive."))
+print("Got: " + str(CESutility_in_budget(1,2,-5,3,4,20)))
+
+print("#" + 50*"-")
+print("Exercise 4, Example 2:")
+print("Evaluating CESutility_in_budget(1.25,2,4,4,4,20)")
+print("Expected: " + str("5.11"))
+print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
 
 ##################################################
 # End
