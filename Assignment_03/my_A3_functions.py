@@ -45,8 +45,8 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
     None
 >>> CESutility_valid(3,2.5,0)
     None
->>> CESutility_valid(3,2.25,4.25)
-    3.19
+>>> CESutility_valid(3,2.5,4.25)
+    3.28
     """
     if x < 0:
         print("x cannot be negative.")
@@ -78,16 +78,18 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     None
 >>> CESutility_in_budget(1,2,-5,3,4,20)
     None
-    >>> CESutility_in_budget(1.25,2,4,4,4,20)
+>>> CESutility_in_budget(10,15,3,6,6,20)
+    None
+>>> CESutility_in_budget(1.25,2,4,4,4,20)
     2.07
     """
     # Checks if prices are negative
     if p_x < 0 or p_y < 0:
+        print("Price cannot be negative.")
         return None
     # Checks if the consumer basket of goods costs more than wealth
     if(p_x * x + p_y * y) > w:
-        return None
-    if r<= 0:
+        print("The consumer basket of goods cannot cost more than wealth.")
         return None
     
     return CESutility_valid(x, y, r)
@@ -127,9 +129,9 @@ print("Got: " + str(CESutility_valid(3,2.5,0)))
 
 print("#" + 50*"-")
 print("Exercise 1, Example 4:")
-print("Evaluating CESutility_valid(3,2.25,4.25)")
-print("Expected: " + str(3.19))
-print("Got: " + str(CESutility_valid(3,2.25,4.25)))
+print("Evaluating CESutility_valid(3,2.5,4.25)")
+print("Expected: " + str(3.28))
+print("Got: " + str(CESutility_valid(3,2.5,4.25)))
 
 #Exercise 2 examples and results
     
@@ -138,24 +140,29 @@ print("Testing my Examples for Exercise 2.")
 print("#" + 50*"-")
 print("Exercise 2, Example 1:")
 print("Evaluating CESutility_in_budget(2,3,3,-1,2,20)")
-print("Expected: " + str("None"))
+print("Expected: " + str("Price cannot be negative."))
 print("Got: " + str(CESutility_in_budget(2,3,3,-1,2,20)))
 
 print("#" + 50*"-")
 print("Exercise 2, Example 2:")
 print("Evaluating CESutility_in_budget(0,2,4,1,-3,20)")
-print("Expected: " + str("None"))
+print("Expected: " + str("Price cannot be negative."))
 print("Got: " + str(CESutility_in_budget(0,2,4,1,-3,20)))
 
-# Go over how to not get print text if running new function
 print("#" + 50*"-")
-print("Exercise 3, Example 2:")
+print("Exercise 2, Example 3:")
 print("Evaluating CESutility_in_budget(1,2,-5,3,4,20)")
-print("Expected: " + str("None"))
+print("Expected: " + str("r must be positive"))
 print("Got: " + str(CESutility_in_budget(1,2,-5,3,4,20)))
 
 print("#" + 50*"-")
-print("Exercise 4, Example 2:")
+print("Exercise 2, Example 4:")
+print("Evaluating CESutility_in_budget(10,15,3,6,6,20)")
+print("Expected: " + str("The consumer basket of goods cannot cost more than wealth."))
+print("Got: " + str(CESutility_in_budget(10,15,3,6,6,20)))
+
+print("#" + 50*"-")
+print("Exercise 2, Example 5:")
 print("Evaluating CESutility_in_budget(1.25,2,4,4,4,20)")
 print("Expected: " + str("2.07"))
 print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
