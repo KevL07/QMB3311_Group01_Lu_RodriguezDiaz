@@ -36,7 +36,7 @@
     
 def CESutility_valid(x:float, y:float, r:float) -> float:
     """Returns the theoretical degree of satisfaction gained by a consumer from
-    the consumption of a non-negative number of good x and y considering r, the
+    the consumption of a non-negative amount of good x and y considering r, the
     positive degree to which the two goods are complements or subsitutes.
     
 >>> CESutility_valid(-1,2,5)
@@ -49,10 +49,10 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
     3.19
     """
     if x < 0:
-        print("x cannot be negative. Please enter a non-negative number.")
+        print("x cannot be negative. Please enter a non-negative amount.")
         return None
     elif y < 0:
-        print("y cannot be negative. Please enter a non-negative number.")
+        print("y cannot be negative. Please enter a non-negative amount.")
         return None
     elif r <=0:
         print("r cannot be negative or zero. Please enter a positive number.")
@@ -71,18 +71,15 @@ def CESutility_valid(x:float, y:float, r:float) -> float:
 def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:float) -> float:
     """Evaluates whether a consumer's mix of goods x and y are in budget 
     considering the specific customer's wealth (w) alongside prices p_x and p_y.
-   
->>> CESutility_in_budget(1,-2,5,4,6,25)
-    None
->>> CESutility_in_budget(2,2,2,-3,5,30)
-    None
->>> CESutility_in_budget(3,2.5,0)
-    None
->>> CESutility_budget(3,2.25,4.25)
-    3.19
     """
-        
-     # w ≥ p_x*x + p_y*y
+    
+    if p_x < 0 or p_y < 0:
+        print("Price cannot be negative. Please enter a non-negative price.")
+        return None
+    if w < 0:
+        print("Wealth cannot be negative. Please enter a non-negative amount.")
+   
+
      
 # Only function definitions above this point. 
 
