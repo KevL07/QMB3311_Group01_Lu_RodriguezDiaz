@@ -79,7 +79,7 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
 >>> CESutility_in_budget(1,2,-5,3,4,20)
     None
     >>> CESutility_in_budget(1.25,2,4,4,4,20)
-    4.44
+    2.07
     """
     # Checks if prices are negative
     if p_x < 0 or p_y < 0:
@@ -152,11 +152,10 @@ print("Evaluating CESutility_in_budget(1,2,-5,3,4,20)")
 print("Expected: " + str("None"))
 print("Got: " + str(CESutility_in_budget(1,2,-5,3,4,20)))
 
-#Go over how to get right answer
 print("#" + 50*"-")
 print("Exercise 4, Example 2:")
 print("Evaluating CESutility_in_budget(1.25,2,4,4,4,20)")
-print("Expected: " + str("5.11"))
+print("Expected: " + str("2.07"))
 print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
 
 ##################################################
