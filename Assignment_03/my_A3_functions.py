@@ -99,6 +99,18 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     
     # utility = (x**r)+(y**r) ** (1/r)
     
+def logit(x:float, beta_0:float, beta_1:float) -> float:
+    """Calculates the logit link function
+
+>>> logit(3,-2,0.7)
+    0.53
+>>> logit(1,0,1)
+    0.73
+>>> logit(-1,0.5,-0.8)
+    0.79
+    """
+    
+
 # Only function definitions above this point. 
 
 
@@ -108,7 +120,7 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
 
 
 # Code goes here.
-#Exercise 1 examples and results
+# Exercise 1 examples and results
 
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 1.")
@@ -136,7 +148,7 @@ print("Evaluating CESutility_valid(3,2.5,4.25)")
 print("Expected: " + str(3.28))
 print("Got: " + str(CESutility_valid(3,2.5,4.25)))
 
-#Exercise 2 examples and results
+# Exercise 2 examples and results
     
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 2.")
@@ -169,6 +181,10 @@ print("Exercise 2, Example 5:")
 print("Evaluating CESutility_in_budget(1.25,2,4,4,4,20)")
 print("Expected: " + str("2.07"))
 print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
+
+# Exercise 3 examples and results
+
+# Exercise 4 examples and results
 
 ##################################################
 # End
