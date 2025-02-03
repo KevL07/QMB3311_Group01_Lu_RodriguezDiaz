@@ -23,8 +23,7 @@
 
 # import name_of_module
 
-
-
+import math
 
 ##################################################
 # Function Definitions
@@ -190,6 +189,27 @@ print("Expected: " + str("2.07"))
 print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
 
 # Exercise 3 examples and results
+
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 2.")
+print("#" + 50*"-")
+print("Exercise 2, Example 1:")
+print("Evaluating CESutility_in_budget(2,3,3,-1,2,20)")
+print("Expected: " + str("Price cannot be negative."))
+print("Got: " + str(CESutility_in_budget(2,3,3,-1,2,20)))
+
+print("#" + 50*"-")
+print("Exercise 2, Example 2:")
+print("Evaluating CESutility_in_budget(0,2,4,1,-3,20)")
+print("Expected: " + str("Price cannot be negative."))
+print("Got: " + str(CESutility_in_budget(0,2,4,1,-3,20)))
+
+print("#" + 50*"-")
+print("Exercise 2, Example 3:")
+print("Evaluating CESutility_in_budget(1,2,-5,3,4,20)")
+print("Expected: " + str("r must be positive"))
+print("Got: " + str(CESutility_in_budget(1,2,-5,3,4,20)))
+
 
 # Exercise 4 examples and results
 
