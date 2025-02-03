@@ -127,28 +127,27 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
  1 minus "logit" if y_i = 0
  
 >>> log_likelihood(1,3,-2,0.7)
-    -0.653
->>> log_likelihood(0,1,0,1)
-    -0.313
->>> log_likelihood(1,-1,0.5,-0.8)
-    -0.228
+    
+>>> log_likelihood(0,1,2,1)
+    -
+>>> log_likelihood(1,2,3,4)
+    
 >>> log_likelihood(2,3,0.4,-0.6)
     None
- """
-     logit_probability = logit(x_i, beta_0, beta_1)
+"""     
+    logit_probability = logit(x_i, beta_0, beta_1)
      
      # if y = 1
-     if y_i == 1:
-         return round(log(logit_probability), 3)
+    if y_i == 1:
+        return round(log(logit_probability), 2)
      # if y = 0
-     if y_i == 0:
-         return round(log(1 - logit_probability), 3)
-     else:
-         print("y_i must equal 1 or 0")
+    if y_i == 0:
+         return round(log(1 - logit_probability),2)
+    else:
+         print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
         
 # Only function definitions above this point. 
-
 
 ##################################################
 # Run the examples to test these functions
@@ -241,43 +240,32 @@ print("Expected: " + str("0.79"))
 print("Got: " + str(logit(-1,0.5,-0.8)))
       
 # Exercise 4 examples and results
-
->>>> log_likelihood(1,3,-2,0.7)
-    -0.653
->>> log_likelihood(0,1,0,1)
-    -0.313
->>> log_likelihood(1,-1,0.5,-0.8)
-    -0.228
->>> log_likelihood(2,3,0.4,-0.6)
-    None
     
-    print("#" + 50*"-")
-    print("Testing my Examples for Exercise 4.")
-    print("#" + 50*"-")
-    print("Exercise 4, Example 1:")
-    print("Evaluating logit(1,3,-2,0.7)")
-    print("Expected: " + str("-0.653"))
-    print("Got: " + str(logit(1,3,-2,0.7)))
+print("#" + 50*"-")
+print("Testing my Examples for Exercise 4.")
+print("#" + 50*"-")
+print("Exercise 4, Example 1:")
+print("Evaluating log_likelihood(1,3,-2,0.7)")
+print("Expected: " + str("-0.653"))
+print("Got: " + str(log_likelihood(1,3,-2,0.7)))
 
-    print("#" + 50*"-")
-    print("Exercise 3, Example 2:")
-    print("Evaluating logit(1,0,1)")
-    print("Expected: " + str("0.73"))
-    print("Got: " + str(logit(1,0,1)))
-
-    print("#" + 50*"-")
-    print("Exercise 3, Example 3:")
-    print("Evaluating logit(-1,0.5,-0.8)")
-    print("Expected: " + str("0.79"))
-    print("Got: " + str(logit(-1,0.5,-0.8)))
+print("#" + 50*"-")
+print("Exercise 4, Example 2:")
+print("Evaluating log_likelihood(0,1,0,1)")
+print("Expected: " + str("-0.313"))
+print("Got: " + str(log_likelihood(0,1,0,1)))
     
-    print("#" + 50*"-")
-    print("Testing my Examples for Exercise 3.")
-    print("#" + 50*"-")
-    print("Exercise 3, Example 1:")
-    print("Evaluating logit(3,-2,0.7)")
-    print("Expected: " + str("0.52"))
-    print("Got: " + str(logit(3,-2,0.7)))
+print("#" + 50*"-")
+print("Exercise 4, Example 3:")
+print("Evaluating log_likelihood(1,-1,0.5,-0.8)")
+print("Expected: " + str("-0.228"))
+print("Got: " + str(log_likelihood(1,-1,0.5,-0.8)))
+    
+print("#" + 50*"-")
+print("Exercise 4, Example 4:")
+print("Evaluating log_likelihood(2,3,0.4,-0.6)")
+print("Expected: " + str("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)"))
+print("Got: " + str(log_likelihood(2,3,0.4,-0.6)))
     
 ##################################################
 # End
