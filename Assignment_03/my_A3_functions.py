@@ -117,6 +117,8 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     logit_function = exp(logit_function_exponent) / (1 + exp(logit_function_exponent))
     
     return round(logit_function, 2)
+
+    # logit_function = e ** (beta_0 + beta_1 * x) / (1 + e ** (beta_0 + beta_1 * x))
     
 # Only function definitions above this point. 
 
@@ -191,37 +193,26 @@ print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
 
 # Exercise 3 examples and results
 
-def logit(x:float, beta_0:float, beta_1:float) -> float:
-    """Calculates the logit link function
-
->>> logit(3,-2,0.7)
-    0.55
->>> logit(1,0,1)
-    0.73
->>> logit(-1,0.5,-0.8)
-    0.79
-    
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 3.")
 print("#" + 50*"-")
 print("Exercise 3, Example 1:")
 print("Evaluating logit(3,-2,0.7)")
 print("Expected: " + str("0.55"))
-print("Got: " + str(CESutility_in_budget(2,3,3,-1,2,20)))
+print("Got: " + str(logit(3,-2,0.7)))
 
 print("#" + 50*"-")
-print("Exercise 2, Example 2:")
-print("Evaluating CESutility_in_budget(0,2,4,1,-3,20)")
-print("Expected: " + str("Price cannot be negative."))
-print("Got: " + str(CESutility_in_budget(0,2,4,1,-3,20)))
+print("Exercise 3, Example 2:")
+print("Evaluating logit(1,0,1)")
+print("Expected: " + str("0.73"))
+print("Got: " + str(logit(1,0,1)))
 
 print("#" + 50*"-")
-print("Exercise 2, Example 3:")
-print("Evaluating CESutility_in_budget(1,2,-5,3,4,20)")
-print("Expected: " + str("r must be positive"))
-print("Got: " + str(CESutility_in_budget(1,2,-5,3,4,20)))
-
-
+print("Exercise 3, Example 3:")
+print("Evaluating logit(-1,0.5,-0.8)")
+print("Expected: " + str("0.79"))
+print("Got: " + str(logit(-1,0.5,-0.8))
+      
 # Exercise 4 examples and results
 
 ##################################################
