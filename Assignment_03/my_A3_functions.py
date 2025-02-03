@@ -123,24 +123,29 @@ from math import log
 
 def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     """Calculates the log-likelihood of observation (y_i; x_i), returning
- the log of the function logit if y_i = 1 or the log of the function 
- 1 minus logit if y_i = 0. 
+ the log of the function "logit" if y_i = 1 or the log of the function 
+ 1 minus "logit" if y_i = 0
  
- >>> log_likelihood(1,3,-2,0.7)
+>>> log_likelihood(1,3,-2,0.7)
     -0.653
 >>> log_likelihood(0,1,0,1)
     -0.313
 >>> log_likelihood(1,-1,0.5,-0.8)
     -0.228
+>>> log_likelihood(2,3,0.4,-0.6)
+    None
  """
-     logit_probability = logit(x, beta_0, beta_1)
+     logit_probability = logit(x_i, beta_0, beta_1)
      
      # if y = 1
-     if y == 1:
+     if y_i == 1:
          return round(log(logit_probability), 3)
      # if y = 0
-        else:
+     if y_i == 0:
          return round(log(1 - logit_probability), 3)
+     else:
+         print("y_i must equal 1 or 0")
+         return None
         
 # Only function definitions above this point. 
 
@@ -237,6 +242,43 @@ print("Got: " + str(logit(-1,0.5,-0.8)))
       
 # Exercise 4 examples and results
 
+>>>> log_likelihood(1,3,-2,0.7)
+    -0.653
+>>> log_likelihood(0,1,0,1)
+    -0.313
+>>> log_likelihood(1,-1,0.5,-0.8)
+    -0.228
+>>> log_likelihood(2,3,0.4,-0.6)
+    None
+    
+    print("#" + 50*"-")
+    print("Testing my Examples for Exercise 4.")
+    print("#" + 50*"-")
+    print("Exercise 4, Example 1:")
+    print("Evaluating logit(1,3,-2,0.7)")
+    print("Expected: " + str("-0.653"))
+    print("Got: " + str(logit(1,3,-2,0.7)))
+
+    print("#" + 50*"-")
+    print("Exercise 3, Example 2:")
+    print("Evaluating logit(1,0,1)")
+    print("Expected: " + str("0.73"))
+    print("Got: " + str(logit(1,0,1)))
+
+    print("#" + 50*"-")
+    print("Exercise 3, Example 3:")
+    print("Evaluating logit(-1,0.5,-0.8)")
+    print("Expected: " + str("0.79"))
+    print("Got: " + str(logit(-1,0.5,-0.8)))
+    
+    print("#" + 50*"-")
+    print("Testing my Examples for Exercise 3.")
+    print("#" + 50*"-")
+    print("Exercise 3, Example 1:")
+    print("Evaluating logit(3,-2,0.7)")
+    print("Expected: " + str("0.52"))
+    print("Got: " + str(logit(3,-2,0.7)))
+    
 ##################################################
 # End
 ##################################################
