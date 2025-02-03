@@ -122,15 +122,15 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 from math import log
 
 def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
-    """Calculates the log-likelihood of observation (y_i; x_i), returning
- the log of the function "logit" if y_i = 1 or the log of the function 
- 1 minus "logit" if y_i = 0
+    """Calculates the log-likelihood of observation (y; x), returning
+ the log of the function "logit" if y = 1 or the log of the function 
+ 1 minus "logit" if y = 0
  
 >>> log_likelihood(1,3,-2,0.7)
-    
+    -0.65
 >>> log_likelihood(0,1,2,1)
-    -
->>> log_likelihood(1,2,3,4)
+    
+>>> log_likelihood(1,2,3,4.5)
     
 >>> log_likelihood(2,3,0.4,-0.6)
     None
@@ -141,8 +141,8 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     if y_i == 1:
         return round(log(logit_probability), 2)
      # if y = 0
-    if y_i == 0:
-         return round(log(1 - logit_probability),2)
+    if y_i  == 0:
+         return round(log(1 - logit_probability), 2)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
@@ -246,20 +246,20 @@ print("Testing my Examples for Exercise 4.")
 print("#" + 50*"-")
 print("Exercise 4, Example 1:")
 print("Evaluating log_likelihood(1,3,-2,0.7)")
-print("Expected: " + str("-0.653"))
+print("Expected: " + str("-0.65"))
 print("Got: " + str(log_likelihood(1,3,-2,0.7)))
 
 print("#" + 50*"-")
 print("Exercise 4, Example 2:")
-print("Evaluating log_likelihood(0,1,0,1)")
-print("Expected: " + str("-0.313"))
-print("Got: " + str(log_likelihood(0,1,0,1)))
+print("Evaluating log_likelihood(0,1,2,1)")
+print("Expected: " + str("-1.31"))
+print("Got: " + str(log_likelihood(0,1,2,1)))
     
 print("#" + 50*"-")
 print("Exercise 4, Example 3:")
-print("Evaluating log_likelihood(1,-1,0.5,-0.8)")
-print("Expected: " + str("-0.228"))
-print("Got: " + str(log_likelihood(1,-1,0.5,-0.8)))
+print("Evaluating log_likelihood(1,2,3,4.5)")
+print("Expected: " + str("-0.98"))
+print("Got: " + str(log_likelihood(1,2,3,4.5)))
     
 print("#" + 50*"-")
 print("Exercise 4, Example 4:")
