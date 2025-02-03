@@ -121,8 +121,20 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 
 from math import log
 
-def log_likelihood(y:float, x:float, beta_0:float, beta_1:float) -> float:
-    """
+def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
+    """Calculates the log-likelihood of observation (y_i; x_i), returning
+ the log of the function logit if y_i = 1 or the log of the function 
+ 1 minus logit if y_i = 0. 
+ 
+ >>> log_likelihood(1,3,-2,0.7)
+    -0.653
+>>> log_likelihood(0,1,0,1)
+    -0.313
+>>> log_likelihood(1,-1,0.5,-0.8)
+    -0.228
+ """
+     logit_fun= 
+     
 # Only function definitions above this point. 
 
 
