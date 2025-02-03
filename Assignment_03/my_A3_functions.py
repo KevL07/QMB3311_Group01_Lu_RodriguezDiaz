@@ -133,8 +133,15 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
 >>> log_likelihood(1,-1,0.5,-0.8)
     -0.228
  """
-     logit_fun= 
+     logit_probability = logit(x, beta_0, beta_1)
      
+     # if y = 1
+     if y == 1:
+         return round(log(logit_probability), 3)
+     # if y = 0
+        else:
+         return round(log(1 - logit_probability), 3)
+        
 # Only function definitions above this point. 
 
 
