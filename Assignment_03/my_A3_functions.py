@@ -109,8 +109,15 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 >>> logit(-1,0.5,-0.8)
     0.79
     """
+    logit_function_exponent = beta_0 + x * beta_1  
+    # Euler's number (approximated)
+    e = 2.718281828459045
+    logit_function_numerator = e ** logit_function_exponent
     
-
+    logit_function = (logit_function_numerator / (1 + logit_function_numerator)) 
+    
+    return round(logit_function, 2)
+    
 # Only function definitions above this point. 
 
 
