@@ -113,7 +113,6 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     0.79
     """
     logit_function_exponent = beta_0 + x * beta_1  
-    # Euler's number (approximated)
     logit_function = exp(logit_function_exponent) / (1 + exp(logit_function_exponent))
     
     return round(logit_function, 2)
@@ -122,7 +121,8 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 
 from math import log
 
-    
+def log_likelihood(y:float, x:float, beta_0:float, beta_1:float) -> float:
+    """
 # Only function definitions above this point. 
 
 
