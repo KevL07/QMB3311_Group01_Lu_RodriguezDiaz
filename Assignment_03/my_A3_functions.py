@@ -106,7 +106,7 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     """Calculates the logit link function
 
 >>> logit(3,-2,0.7)
-    0.55
+    0.52
 >>> logit(1,0,1)
     0.73
 >>> logit(-1,0.5,-0.8)
@@ -198,7 +198,7 @@ print("Testing my Examples for Exercise 3.")
 print("#" + 50*"-")
 print("Exercise 3, Example 1:")
 print("Evaluating logit(3,-2,0.7)")
-print("Expected: " + str("0.55"))
+print("Expected: " + str("0.52"))
 print("Got: " + str(logit(3,-2,0.7)))
 
 print("#" + 50*"-")
@@ -211,7 +211,7 @@ print("#" + 50*"-")
 print("Exercise 3, Example 3:")
 print("Evaluating logit(-1,0.5,-0.8)")
 print("Expected: " + str("0.79"))
-print("Got: " + str(logit(-1,0.5,-0.8))
+print("Got: " + str(logit(-1,0.5,-0.8)))
       
 # Exercise 4 examples and results
 
