@@ -25,6 +25,8 @@
 
 import math
 
+help (math)
+
 ##################################################
 # Function Definitions
 ##################################################
@@ -98,6 +100,8 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     
     # utility = (x**r)+(y**r) ** (1/r)
     
+from math import exp
+
 def logit(x:float, beta_0:float, beta_1:float) -> float:
     """Calculates the logit link function
 
@@ -110,10 +114,7 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     """
     logit_function_exponent = beta_0 + x * beta_1  
     # Euler's number (approximated)
-    e = 2.718281828459045
-    logit_function_numerator = e ** logit_function_exponent
-    
-    logit_function = (logit_function_numerator / (1 + logit_function_numerator)) 
+    logit_function = exp(logit_function_exponent) / (1 + exp(logit_function_exponent))
     
     return round(logit_function, 2)
     
@@ -190,12 +191,22 @@ print("Got: " + str(CESutility_in_budget(1.25,2,4,4,4,20)))
 
 # Exercise 3 examples and results
 
+def logit(x:float, beta_0:float, beta_1:float) -> float:
+    """Calculates the logit link function
+
+>>> logit(3,-2,0.7)
+    0.53
+>>> logit(1,0,1)
+    0.73
+>>> logit(-1,0.5,-0.8)
+    0.79
+    
 print("#" + 50*"-")
-print("Testing my Examples for Exercise 2.")
+print("Testing my Examples for Exercise 3.")
 print("#" + 50*"-")
-print("Exercise 2, Example 1:")
-print("Evaluating CESutility_in_budget(2,3,3,-1,2,20)")
-print("Expected: " + str("Price cannot be negative."))
+print("Exercise 3, Example 1:")
+print("Evaluating logit(3,-2,0.7)")
+print("Expected: " + str("0.53"))
 print("Got: " + str(CESutility_in_budget(2,3,3,-1,2,20)))
 
 print("#" + 50*"-")
