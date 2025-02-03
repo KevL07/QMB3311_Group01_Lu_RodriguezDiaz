@@ -119,6 +119,9 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     return round(logit_function, 2)
 
     # logit_function = e ** (beta_0 + beta_1 * x) / (1 + e ** (beta_0 + beta_1 * x))
+
+from math import log
+
     
 # Only function definitions above this point. 
 
