@@ -25,8 +25,6 @@
 
 import math
 
-
-
 ##################################################
 # Function Definitions
 ##################################################
@@ -123,7 +121,7 @@ from math import log
 
 def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     """Calculates the log-likelihood of observation (y; x), returning
- the log of the function "logit" if y = 1 or the log of the function 
+ the natural log of the function "logit" if y = 1 or the log of the function 
  1 minus "logit" if y = 0
  
 >>> log_likelihood(1,3,-2,0.7)
@@ -149,9 +147,9 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
 
     # e ** (beta_0 + beta_1 * x_i) / (1 + e ** (beta_0 + beta_1 * x_i)) = a
     # if y_i = 0
-    # log(1-(a))
+    # log_e(1-(a))
     # if y_i = 1
-    # log(a)
+    # log_e(a)
     
 # Only function definitions above this point. 
 
