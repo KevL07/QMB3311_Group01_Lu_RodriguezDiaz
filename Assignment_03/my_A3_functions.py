@@ -139,10 +139,10 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
      
     # if y = 1
     if y_i == 1:
-        return round(log(logit_probability), 2)
+        return round(log(logit_probability), 1)
     # if y = 0
     elif y_i  == 0:
-         return round(log(1 - logit_probability), 2)
+         return round(log(1 - logit_probability), 1)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
@@ -252,7 +252,7 @@ print("Testing my Examples for Exercise 4.")
 print("#" + 50*"-")
 print("Exercise 4, Example 1:")
 print("Evaluating log_likelihood(1,3,-2,0.7)")
-print("Expected: " + str("-0.65"))
+print("Expected: " + str("-0.7"))
 print("Got: " + str(log_likelihood(1,3,-2,0.7)))
 
 print("#" + 50*"-")
