@@ -25,7 +25,7 @@
 
 import math
 
-help (math)
+
 
 ##################################################
 # Function Definitions
@@ -60,9 +60,9 @@ def CESutility_valid(x:float, y:float,r:float) -> float:
         print("r must be positive.")
     if error == True:
         return None
-    else:
-        ans = (pow(x,r) + pow(y,r)) ** (1/r)
-        return round(ans,2)
+    
+    ans = (pow(x,r) + pow(y,r)) ** (1/r)
+    return round(ans,2)
     
     # utility = (x**r) + (y**r) ** (1/r)
     # print(CESutility_valid())
@@ -139,10 +139,10 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
      
     # if y = 1
     if y_i == 1:
-        return round(log(logit_probability), 1)
+        return round(log(logit_probability), 2)
     # if y = 0
-    if y_i  == 0:
-         return round(log(1 - logit_probability), 1)
+    elif y_i  == 0:
+         return round(log(1 - logit_probability), 2)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
@@ -150,7 +150,7 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     # e ** (beta_0 + beta_1 * x_i) / (1 + e ** (beta_0 + beta_1 * x_i)) = a
     # if y_i = 0
     # log(1-(a))
-    #if y_i = 1
+    # if y_i = 1
     # log(a)
     
 # Only function definitions above this point. 
