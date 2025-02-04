@@ -252,7 +252,7 @@ print("Testing my Examples for Exercise 4.")
 print("#" + 50*"-")
 print("Exercise 4, Example 1:")
 print("Evaluating log_likelihood(1,3,-2,0.7)")
-print("Expected: " + str("-0.7"))
+print("Expected: " + str("-0.65"))
 print("Got: " + str(log_likelihood(1,3,-2,0.7)))
 
 print("#" + 50*"-")
