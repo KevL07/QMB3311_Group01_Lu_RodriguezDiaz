@@ -23,11 +23,23 @@
 
 # import name_of_module
 
-import math
-
 ##################################################
 # Function Definitions
 ##################################################
+
+def CESutility(good_x: float, good_y: float, r: float) -> float:
+    """Calculate the constant elasticity of subsitution utility function for two goods.
+    
+    >>> CESutility(3, 4, 2)
+    5.0
+    >>> CESutility(1, 1, 2)
+    1.4142135623730951
+    >>> CESutility(3**0.5, 4**0.5, 4)
+    2.23606797749979
+    """
+    
+    utility = (good_x**r + good_y**r)**(1/r)
+    return utility
 
 # Only function definitions here - no other calculations. 
 
@@ -45,7 +57,7 @@ def CESutility_valid(x:float, y:float,r:float) -> float:
     None
 >>> CESutility_valid(3,2.5,4.25)
     3.28
-    """
+    """ # indent the above to match the indent of rest of chunk for readability
     error = False
     if x < 0:
         error = True
@@ -59,12 +71,9 @@ def CESutility_valid(x:float, y:float,r:float) -> float:
     if error == True:
         return None
     
-    ans = (pow(x,r) + pow(y,r)) ** (1/r)
-    return round(ans,2)
-    
-    # utility = (x**r) + (y**r) ** (1/r)
-    # print(CESutility_valid())
-    
+    ans = CESutility(x, y, r)
+    return ans
+        
 
 # ...
 
@@ -95,8 +104,6 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
         return None
     
     return CESutility_valid(x, y, r)
-    
-    # utility = (x**r)+(y**r) ** (1/r)
     
 from math import exp
 
@@ -137,10 +144,10 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
      
     # if y = 1
     if y_i == 1:
-        return round(log(logit_probability), 1)
+        return log(logit_probability)
     # if y = 0
     elif y_i  == 0:
-         return round(log(1 - logit_probability), 1)
+         return log(1 - logit_probability)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
