@@ -6,7 +6,7 @@
 #
 # Name: Frances Rodriguez Diaz and Kevin Lu
 #
-# Date: 2/13/2025
+# Date: 2/17/2025
 # 
 ##################################################
 #
@@ -64,7 +64,6 @@ def logit_like_sum(y,x,beta_0,beta_1):
 
 # Exercise 3
 
-
 def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     """Calculates the gradient vector of the likelihood function
     for the bivariate logistic regression model
@@ -91,7 +90,6 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     
     return None
 
-
 # Exercise 4
 
 def CESutility_multi(x,a,r):
@@ -101,7 +99,6 @@ def CESutility_multi(x,a,r):
         inside += a[i]**(1-r)*x[i]**r
         
     return inside ** (1/r)
-
 
 # Only function definitions above this point. 
 
