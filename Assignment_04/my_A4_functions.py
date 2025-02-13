@@ -60,7 +60,7 @@ def logit_like_sum(y,x,beta_0,beta_1):
     
     log_likelihood = 0
     for i in range(len(y)):
-        log_likelihood = logit_like(y[i],x[i],beta_0,beta_1)
+        log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
 
 # Exercise 3
 
