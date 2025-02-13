@@ -94,6 +94,9 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
 
 # Exercise 4
 
+def CESutility_multi(x,a,r):
+    
+    inside
 
 
 # Only function definitions above this point. 
