@@ -96,7 +96,11 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
 
 def CESutility_multi(x,a,r):
     
-    inside
+    inside = 0
+    for i in range(len(x)):
+        inside += a[i]**(1-r)*x[i]**r
+        
+    return inside ** (1/r)
 
 
 # Only function definitions above this point. 
