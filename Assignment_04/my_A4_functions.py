@@ -38,7 +38,18 @@ import doctest
 mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
+    """ Computes the inverse of a 2x2 matrix.
     
+>>> matrix_inverse(np.array([[4, 7], [2, 6]]))
+    array([[0.6, -0.7],
+           [-0,2, 0.4]])
+>>> matrix_inverse(np.array([[1, 2], [3, 4]]))
+    array([[-2, 1 ]
+           1.5, -0.5]])
+>>> matrix_inverse(np.array([[2, 3], [4, 6]]))
+    None
+    """
+          
     det = mat_in[0,0] * mat_in[1,1] - mat_in[0,1] * mat_in[1,0]
     
     if det == 0:
