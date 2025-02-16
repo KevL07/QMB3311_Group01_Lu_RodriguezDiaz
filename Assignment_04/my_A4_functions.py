@@ -38,18 +38,20 @@ import doctest
 mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
-    """ Calculates the inverse of a 2x2 matrix.
+    """ Calculates the inverse of a two-by-two matrix using two nested loops.
     
     >>> matrix_inverse(np.array([[4, 7], [2, 6]]))
     array([[0.6, -0.7],
            [-0,2, 0.4]])
     >>> matrix_inverse(np.array([[1, 2], [3, 4]]))
-    array([[-2, 1 ],
+    array([[-2, 1],
            [1.5, -0.5]])
     >>> matrix_inverse(np.array([[2, 3], [4, 6]]))
     None
+    >>> matrix_inverse(np.array([[1, 1], [1, 1]]))
+    None
     """
-          
+    
     det = mat_in[0,0] * mat_in[1,1] - mat_in[0,1] * mat_in[1,0]
     
     if det == 0:
@@ -69,8 +71,11 @@ def matrix_inverse(mat_in):
                  
 # Exercise 2
 
-def logit_like_sum(y,x,beta_0,beta_1):
-    """ Computes 
+def logit_like_sum(y, x, beta_0, beta_1):
+    """  Calculates the sum of the log-likelihood across all obersvation, 
+    returning the sum of either the log of the function l(x; beta_0; beta_1) if
+    y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
+    over all observation.
     
     log_likelihood = 0
     for i in range(len(y)):
