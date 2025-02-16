@@ -118,17 +118,43 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     [-2/3, -2.0]
     """
     
-    return None
-
+    x = np.array(x)
+    y = np.array(y)
+    logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x)
+    probability_error = y - logit_link_function
+    gradient_beta_0 = round(np.sum(probability_error), 2)
+    gradient_beta_1 = round(np.sum(probability_error * x), 2)
+    
+    return [gradient_beta_0, gradient_beta_1]                                                   
+    
 # Exercise 4
 
-def CESutility_multi(x,a,r):
+def CESutility_multi(x, a, r):
+    """ Evaluates the consumer's utiity for more than two goods, where x is a
+    vector of quantities of goods consumed and a is a vector of weighted
+    parameters for each good and the subscript i indicates the ith element of 
+    each vector
+    
+    >>> CESutility_multi([2, 3], [0.5, 0.5], 0.5)
+    2.4
+    >>> CCESutility_multi([1, 2, 3], [0,3 0.4, 0.3], 1)
+    2.0
+    >>> CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
+    None
+    """
+    
+    x = np.array(x)
+    a = np.array(a)
+    
+    if np.min(x) < 0 or np.min(a) < 0:
+        print("x and a must be non-negative.")
+        return None
     
     inside = 0
     for i in range(len(x)):
         inside += a[i]**(1-r)*x[i]**r
         
-    return inside ** (1/r)
+    return round(inside ** (1/r), 1)
 
 # Only function definitions above this point. 
 
