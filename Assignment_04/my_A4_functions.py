@@ -23,6 +23,9 @@
 
 # import name_of_module
 
+import numpy as np
+import math
+import doctest
 
 ##################################################
 # Function Definitions
@@ -32,7 +35,6 @@
 
 # Exercise 1
 
-import numpy as np
 mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
