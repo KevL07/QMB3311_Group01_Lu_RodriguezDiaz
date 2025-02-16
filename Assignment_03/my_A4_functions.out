@@ -1,0 +1,197 @@
+Trying:
+    CESutility_multi([2, 3], [0.5, 0.5], 0.5)
+Expecting:
+    2.4
+**********************************************************************
+File "__main__", line 7, in __main__.CESutility_multi
+Failed example:
+    CESutility_multi([2, 3], [0.5, 0.5], 0.5)
+Expected:
+    2.4
+Got:
+    4.9
+Trying:
+    CCESutility_multi([1, 2, 3], [0,3 0.4, 0.3], 1)
+Expecting:
+    2.0
+**********************************************************************
+File "__main__", line 9, in __main__.CESutility_multi
+Failed example:
+    CCESutility_multi([1, 2, 3], [0,3 0.4, 0.3], 1)
+Exception raised:
+    Traceback (most recent call last):
+      File "C:\Users\anace\anaconda3\Lib\doctest.py", line 1368, in __run
+        exec(compile(example.source, filename, "single",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "<doctest __main__.CESutility_multi[1]>", line 1
+        CCESutility_multi([1, 2, 3], [0,3 0.4, 0.3], 1)
+                                        ^^^^^
+    SyntaxError: invalid syntax. Perhaps you forgot a comma?
+Trying:
+    CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
+Expecting:
+    None
+**********************************************************************
+File "__main__", line 11, in __main__.CESutility_multi
+Failed example:
+    CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
+Expected:
+    None
+Got:
+    x and a must be non-negative.
+Trying:
+    logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], 0.0, 0.0)
+Expecting:
+    [0.0, 0.0]
+ok
+Trying:
+    logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(3), 0.0)
+Expecting:
+    [-1.0, -10.0]
+ok
+Trying:
+    logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(7), 0.0)
+Expecting:
+    [-1.5, -15.0]
+ok
+Trying:
+    logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(2))
+Expecting:
+    [0.0, 0.0]
+ok
+Trying:
+    logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(5))
+Expecting:
+    [-0.5, -0.5]
+ok
+Trying:
+    logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
+Expecting:
+    [-2/3, -2.0]
+**********************************************************************
+File "__main__", line 21, in __main__.logit_like_grad
+Failed example:
+    logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
+Expected:
+    [-2/3, -2.0]
+Got:
+    [-0.67, -2.0]
+Trying:
+    logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+Expecting:
+    -2.12
+**********************************************************************
+File "__main__", line 7, in __main__.logit_like_sum
+Failed example:
+    logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+Exception raised:
+    Traceback (most recent call last):
+      File "C:\Users\anace\anaconda3\Lib\doctest.py", line 1368, in __run
+        exec(compile(example.source, filename, "single",
+      File "<doctest __main__.logit_like_sum[0]>", line 1, in <module>
+        logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+      File "C:\Users\anace\AppData\Local\Temp\ipykernel_232916\1296227630.py", line 18, in logit_like_sum
+        log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
+                          ^^^^^^^^^^
+    NameError: name 'logit_like' is not defined. Did you mean: 'logit_like_sum'?
+Trying:
+    logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+Expecting:
+    -2.25
+**********************************************************************
+File "__main__", line 9, in __main__.logit_like_sum
+Failed example:
+    logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+Exception raised:
+    Traceback (most recent call last):
+      File "C:\Users\anace\anaconda3\Lib\doctest.py", line 1368, in __run
+        exec(compile(example.source, filename, "single",
+      File "<doctest __main__.logit_like_sum[1]>", line 1, in <module>
+        logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+      File "C:\Users\anace\AppData\Local\Temp\ipykernel_232916\1296227630.py", line 18, in logit_like_sum
+        log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
+                          ^^^^^^^^^^
+    NameError: name 'logit_like' is not defined. Did you mean: 'logit_like_sum'?
+Trying:
+    logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+Expecting:
+    -2.08
+**********************************************************************
+File "__main__", line 11, in __main__.logit_like_sum
+Failed example:
+    logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+Exception raised:
+    Traceback (most recent call last):
+      File "C:\Users\anace\anaconda3\Lib\doctest.py", line 1368, in __run
+        exec(compile(example.source, filename, "single",
+      File "<doctest __main__.logit_like_sum[2]>", line 1, in <module>
+        logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+      File "C:\Users\anace\AppData\Local\Temp\ipykernel_232916\1296227630.py", line 18, in logit_like_sum
+        log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
+                          ^^^^^^^^^^
+    NameError: name 'logit_like' is not defined. Did you mean: 'logit_like_sum'?
+Trying:
+    matrix_inverse(np.array([[4, 7], [2, 6]]))
+Expecting:
+    array([[0.6, -0.7],
+           [-0,2, 0.4]])
+**********************************************************************
+File "__main__", line 6, in __main__.matrix_inverse
+Failed example:
+    matrix_inverse(np.array([[4, 7], [2, 6]]))
+Expected:
+    array([[0.6, -0.7],
+           [-0,2, 0.4]])
+Got:
+    array([[ 0.6, -0.2],
+           [-0.7,  0.4]])
+Trying:
+    matrix_inverse(np.array([[1, 2], [3, 4]]))
+Expecting:
+    array([[-2, 1],
+           [1.5, -0.5]])
+**********************************************************************
+File "__main__", line 9, in __main__.matrix_inverse
+Failed example:
+    matrix_inverse(np.array([[1, 2], [3, 4]]))
+Expected:
+    array([[-2, 1],
+           [1.5, -0.5]])
+Got:
+    array([[-2. ,  1.5],
+           [ 1. , -0.5]])
+Trying:
+    matrix_inverse(np.array([[2, 3], [4, 6]]))
+Expecting:
+    None
+**********************************************************************
+File "__main__", line 12, in __main__.matrix_inverse
+Failed example:
+    matrix_inverse(np.array([[2, 3], [4, 6]]))
+Expected:
+    None
+Got:
+    Error: Determined cannot be zeero
+Trying:
+    matrix_inverse(np.array([[1, 1], [1, 1]]))
+Expecting:
+    None
+**********************************************************************
+File "__main__", line 14, in __main__.matrix_inverse
+Failed example:
+    matrix_inverse(np.array([[1, 1], [1, 1]]))
+Expected:
+    None
+Got:
+    Error: Determined cannot be zeero
+1 items had no tests:
+    __main__
+**********************************************************************
+4 items had failures:
+   3 of   3 in __main__.CESutility_multi
+   1 of   6 in __main__.logit_like_grad
+   3 of   3 in __main__.logit_like_sum
+   4 of   4 in __main__.matrix_inverse
+16 tests in 5 items.
+5 passed and 11 failed.
+***Test Failed*** 11 failures.

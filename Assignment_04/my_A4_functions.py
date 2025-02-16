@@ -182,6 +182,9 @@ if __name__ == "__main__":
         doctest.testmod(verbose = True)
         sys.stdout = sys.__stdout__
         
+with open("my_A4_functions.out", "r") as f:
+    print(f.read())
+
 ##################################################
 # End
 ##################################################
