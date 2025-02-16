@@ -25,6 +25,7 @@
 
 import numpy as np
 import math
+import sys
 import doctest
 
 ##################################################
@@ -120,7 +121,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     
     x = np.array(x)
     y = np.array(y)
-    logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x)
+    logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     probability_error = y - logit_link_function
     gradient_beta_0 = round(np.sum(probability_error), 2)
     gradient_beta_1 = round(np.sum(probability_error * x), 2)
@@ -177,9 +178,10 @@ def CESutility_multi(x, a, r):
 
 if __name__ == "__main__":
     with open("myA4functions.out", "w") as f:
-        doctest.testmod(verbose = True, output = f)
-
-
+        sys.stdout = f
+        doctest.testmod(verbose = True)
+        sys.stdout = sys.__stdout__
+        
 ##################################################
 # End
 ##################################################
