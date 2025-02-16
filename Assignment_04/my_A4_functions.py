@@ -36,16 +36,16 @@ import doctest
 
 # Exercise 1
 
-mat_in = np.array([[4,7],[2,6]])
+mat_in = np.array([[4,7], [2,6]])
 
 def matrix_inverse(mat_in):
     """ Calculates the inverse of a two-by-two matrix using two nested loops.
     
     >>> matrix_inverse(np.array([[4, 7], [2, 6]]))
     array([[0.6, -0.7],
-           [-0,2, 0.4]])
+           [-0.2, 0.4]])
     >>> matrix_inverse(np.array([[1, 2], [3, 4]]))
-    array([[-2, 1],
+    array([[-2.0, 1.0],
            [1.5, -0.5]])
     >>> matrix_inverse(np.array([[2, 3], [4, 6]]))
     None
@@ -62,7 +62,7 @@ def matrix_inverse(mat_in):
         mat_out = np.zeros((2,2))
         for i in range(2):
             for j in range(2):
-                mat_out[i,j] = ((-1) ** (i+j) * mat_in[1-i,1-j])/det
+                mat_out[i,j] = ((-1) ** (i+j) * mat_in[1-j,1-i]) / det
                 
         return mat_out
     
