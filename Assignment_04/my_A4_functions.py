@@ -77,9 +77,20 @@ def logit_like_sum(y, x, beta_0, beta_1):
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
     over all observation.
     
+    >>> logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+    -2.12
+    >>> logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+    -2.25
+    >>> logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+    -2.08
+    """
+    
     log_likelihood = 0
+    
     for i in range(len(y)):
         log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
+        
+    return round(log_likelihood, 2)
 
 # Exercise 3
 
