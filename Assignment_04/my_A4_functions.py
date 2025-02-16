@@ -37,7 +37,7 @@ mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
     
-    det = mat_in[0,0]*mat_in[1,1] - mat_in[0,1]*mat_in[1,0]:
+    det = mat_in[0,0] * mat_in[1,1] - mat_in[0,1] * mat_in[1,0]
     
     if det == 0:
         print("Error: Determined cannot be zeero")
@@ -46,7 +46,7 @@ def matrix_inverse(mat_in):
         mat_out = np.zeros((2,2))
         for i in range(2):
             for j in range(2):
-                mat_out[i,j] = ((-1)**(i+j)*mat_in[1-i,1-j])/det
+                mat_out[i,j] = ((-1) ** (i+j) * mat_in[1-i,1-j])/det
                 
         return mat_out
     
