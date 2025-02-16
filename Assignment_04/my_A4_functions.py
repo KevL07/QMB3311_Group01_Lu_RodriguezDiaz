@@ -175,10 +175,11 @@ def CESutility_multi(x, a, r):
 # Choose good examples that will test interesting cases. 
 # Make sure they all work correctly. 
 
-
+if __name__ == "__main__":
+    with open("myA4functions.out", "w") as f:
+        doctest.testmod(verbose = True, output = f)
 
 
 ##################################################
 # End
 ##################################################
-
