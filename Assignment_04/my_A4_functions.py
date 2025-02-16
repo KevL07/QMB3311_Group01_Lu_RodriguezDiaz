@@ -38,15 +38,15 @@ import doctest
 mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
-    """ Computes the inverse of a 2x2 matrix.
+    """ Calculates the inverse of a 2x2 matrix.
     
->>> matrix_inverse(np.array([[4, 7], [2, 6]]))
+    >>> matrix_inverse(np.array([[4, 7], [2, 6]]))
     array([[0.6, -0.7],
            [-0,2, 0.4]])
->>> matrix_inverse(np.array([[1, 2], [3, 4]]))
-    array([[-2, 1 ]
-           1.5, -0.5]])
->>> matrix_inverse(np.array([[2, 3], [4, 6]]))
+    >>> matrix_inverse(np.array([[1, 2], [3, 4]]))
+    array([[-2, 1 ],
+           [1.5, -0.5]])
+    >>> matrix_inverse(np.array([[2, 3], [4, 6]]))
     None
     """
           
@@ -70,6 +70,7 @@ def matrix_inverse(mat_in):
 # Exercise 2
 
 def logit_like_sum(y,x,beta_0,beta_1):
+    """ Computes 
     
     log_likelihood = 0
     for i in range(len(y)):
