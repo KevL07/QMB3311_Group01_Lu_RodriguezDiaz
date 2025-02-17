@@ -56,19 +56,22 @@ def matrix_inverse(mat_in):
     det = mat_in[0,0] * mat_in[1,1] - mat_in[0,1] * mat_in[1,0]
     
     if det == 0:
-        print("Error: Determined cannot be zeero")
+        print("Error: Determined cannot be zero")
         return None
     else:
         mat_out = np.zeros((2,2))
         for i in range(2):
             for j in range(2):
-                mat_out[i,j] = ((-1) ** (i+j) * mat_in[1-j,1-i]) / det
+                if i == 0 and j == 0:
+                    mat_out[i, j] = mat_in[1,1] / det
+                elif i == 0 and j == 1:
+                    mat_out[i, j] = -mat_in[0,1] / det
+                elif i == 1 and j == 0:
+                    mat_out[i, j] = -mat_in[1,0] / det
+                elif i == 1 and j == 1:
+                    mat_out[i, j] = mat_in[0,0] / det
                 
-        return mat_out
-    
-    matrix_inverse(mat_in)
-    
-    np.linalg.inv(mat_in)
+        return np.round(mat_out, 2)
                  
 # Exercise 2
 
@@ -76,7 +79,14 @@ def logit_like(y, x, beta_0, beta_1):
     """Calculates the log-likelihood for a single observation.
     """
     probability = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
+    
+    if probability == 0:
+        probability = 0.0000001  
+    elif probability == 1:
+        probability = 0.9999999  
+    
     log_likelihood_function = y * np.log(probability) + (1 - y) * np.log(1 - probability)
+    
     return log_likelihood_function 
     
 def logit_like_sum(y, x, beta_0, beta_1):
@@ -155,16 +165,9 @@ def CESutility_multi(x, a, r):
     a = np.array(a)
     
     if min(x) < 0 or min(a) < 0:
-        print("x and a must be non-negative.")
         return None
     
-    if r == 0:
-        print("r cannot be zero")
-        return None
-    
-    inside = 0
-    for i in range(len(x)):
-        inside += a[i] ** (1-r) * x[i] ** r
+    inside = sum(a[i] ** (1 - r) * x[1] ** r for i in range(len(x)))
         
     return round(inside ** (1/r), 1)
 
