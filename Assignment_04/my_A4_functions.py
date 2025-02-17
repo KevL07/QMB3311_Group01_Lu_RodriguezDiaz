@@ -151,8 +151,8 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     y = np.array(y)
     logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     probability_error = y - logit_link_function
-    gradient_beta_0 = round(np.sum(probability_error), 2)
-    gradient_beta_1 = round(np.sum(probability_error * x), 2)
+    gradient_beta_0 = round(np.sum(probability_error), 1)
+    gradient_beta_1 = round(np.sum(probability_error * x), 1)
     
     return [gradient_beta_0, gradient_beta_1]                                                   
     
