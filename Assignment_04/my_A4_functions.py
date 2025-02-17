@@ -36,35 +36,35 @@ import doctest
 
 # Exercise 1
 
-mat_in = np.array([[4,7], [2,6]])
+mat_in = np.array([[4,7],[2,6]])
 
 def matrix_inverse(mat_in):
     """ Calculates the inverse of a two-by-two matrix using two nested loops.
     
-    >>> matrix_inverse(np.array([[4,7], [2,6]]))
+    >>> matrix_inverse(np.array([[4,7],[2,6]]))
     array([[0.6,-0.7],
            [-0.2,0.4]])
-    >>> matrix_inverse(np.array([[1,2], [3,4]]))
+    >>> matrix_inverse(np.array([[1,2],[3,4]]))
     array([[-2.0,1.0],
            [1.5,-0.5]])
-    >>> matrix_inverse(np.array([[2,3], [4,6]]))
+    >>> matrix_inverse(np.array([[2,3],[4,6]]))
     None
-    >>> matrix_inverse(np.array([[1,1], [1,1]]))
+    >>> matrix_inverse(np.array([[1,1],[1,1]]))
     None
     """
     
-    det = mat_in[0,0] * mat_in[1,1] - mat_in[0,1] * mat_in[1,0]
+    det = mat_in[0,0]*mat_in[1,1]-mat_in[0,1]*mat_in[1,0]
     
     if det == 0:
-        print("Error: Determined cannot be zero")
+        print("Error: Determinant cannot be zero")
         return None
     else:
         mat_out = np.zeros((2,2))
         for i in range(2):
             for j in range(2):
-                mat_out[i, j] = ((-1) ** (i+j) * mat_in[1-i,1-j]) / det
+                mat_out[i, j] = ((-1)**(i+j)*mat_in[1-i,1-j])/det
                 
-        return np.round(mat_out, 2)
+        return np.round(mat_out, 1)
                  
 # Exercise 2
 
