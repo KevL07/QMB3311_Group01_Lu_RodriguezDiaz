@@ -34,6 +34,9 @@ import doctest
 
 # Only function definitions here - no other calculations. 
 
+def logit(x_i:float, beta_0:float, beta_1:float):
+    return math.exp(beta_0 + beta_1 * x_i) / (1 + math.exp(beta_0 + beta_1 * x_i))
+
 # Exercise 1
 
 mat_in = np.array([[4,7],[2,6]])
@@ -167,6 +170,16 @@ def CESutility_multi(x, a, r):
     >>> CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
     None
     """
+    
+    for i in x:
+        if i < 0:
+            print("x must be a nonnegative")
+            return None
+    
+    for i in a:
+        if i < 0:
+            print("a must be a nonnegative")
+            return None
     
     inside = 0
     for i in range(len(x)):
