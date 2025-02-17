@@ -101,26 +101,25 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     # if y_i = 1
     # log_e(a)
     
-def logit_like_sum(y, x, beta_0, beta_1):
+def logit_likelihood_sum(y, x, beta_0, beta_1):
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
     over all observation.
     
-    >>> logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+    >>> logit_likelihood_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
     -2.12
-    >>> logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+    >>> logit_likelihood_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
     -2.25
-    >>> logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+    >>> logit_likelihood_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
     -2.08
     """
     
-    log_likelihood = 0
-    
+    logit_likelihood = 0
     for i in range(len(y)):
-        log_likelihood += logit_like(y[i], x[i], beta_0, beta_1)
+        logit_likelihood += log_likelihood(y[i], x[i], beta_0, beta_1)
         
-    return round(log_likelihood, 2)
+    return round(logit_likelihood, 2)
 
 # Exercise 3
 
