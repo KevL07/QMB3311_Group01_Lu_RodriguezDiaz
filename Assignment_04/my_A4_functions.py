@@ -25,7 +25,10 @@
 
 import numpy as np
 import math
+<<<<<<< HEAD
+=======
 import sys
+>>>>>>> 479dff3bfb6adfa6779913943320c9deca795e38
 import doctest
 
 ##################################################
@@ -207,13 +210,9 @@ def CESutility_multi(x, a, r):
 # Make sure they all work correctly. 
 
 if __name__ == "__main__":
+
     with open("my_A4_functions.out", "w") as f:
-        sys.stdout = f
-        doctest.testmod(verbose = True)
-        sys.stdout = sys.__stdout__
-        
-with open("my_A4_functions.out", "r") as f:
-    print(f.read())
+        print(doctest.testmod(verbose = True), file = f)
 
 ##################################################
 # End
