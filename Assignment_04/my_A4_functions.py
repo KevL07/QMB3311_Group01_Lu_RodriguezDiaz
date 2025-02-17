@@ -41,15 +41,15 @@ mat_in = np.array([[4,7], [2,6]])
 def matrix_inverse(mat_in):
     """ Calculates the inverse of a two-by-two matrix using two nested loops.
     
-    >>> matrix_inverse(np.array([[4, 7], [2, 6]]))
-    array([[0.6, -0.7],
-           [-0.2, 0.4]])
-    >>> matrix_inverse(np.array([[1, 2], [3, 4]]))
-    array([[-2.0, 1.0],
-           [1.5, -0.5]])
-    >>> matrix_inverse(np.array([[2, 3], [4, 6]]))
+    >>> matrix_inverse(np.array([[4,7], [2,6]]))
+    array([[0.6,-0.7],
+           [-0.2,0.4]])
+    >>> matrix_inverse(np.array([[1,2], [3,4]]))
+    array([[-2.0,1.0],
+           [1.5,-0.5]])
+    >>> matrix_inverse(np.array([[2,3], [4,6]]))
     None
-    >>> matrix_inverse(np.array([[1, 1], [1, 1]]))
+    >>> matrix_inverse(np.array([[1,1], [1,1]]))
     None
     """
     
@@ -80,11 +80,8 @@ def logit_like(y, x, beta_0, beta_1):
     """
     probability = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     
-    if probability == 0:
-        probability = 0.0000001  
-    elif probability == 1:
-        probability = 0.9999999  
-    
+    probability = min(max(probability, 0.0000001), 0.9999999)  
+   
     log_likelihood_function = y * np.log(probability) + (1 - y) * np.log(1 - probability)
     
     return log_likelihood_function 
@@ -106,7 +103,7 @@ def logit_like_sum(y, x, beta_0, beta_1):
     log_likelihood = 0
     
     for i in range(len(y)):
-        log_likelihood += logit_like(y[i],x[i],beta_0,beta_1)
+        log_likelihood += logit_like(y[i], x[i], beta_0, beta_1)
         
     return round(log_likelihood, 2)
 
@@ -167,9 +164,11 @@ def CESutility_multi(x, a, r):
     if min(x) < 0 or min(a) < 0:
         return None
     
-    inside = sum(a[i] ** (1 - r) * x[1] ** r for i in range(len(x)))
+    inside = 0
+    for i in range(len(x)):
+        inside += a[i] ** (1 - r) * x[i] ** r
         
-    return round(inside ** (1/r), 1)
+    return round(inside ** (1 / r), 1)
 
 # Only function definitions above this point. 
 
