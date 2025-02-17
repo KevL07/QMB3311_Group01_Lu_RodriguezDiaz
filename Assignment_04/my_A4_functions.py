@@ -25,10 +25,7 @@
 
 import numpy as np
 import math
-<<<<<<< HEAD
-=======
 import sys
->>>>>>> 479dff3bfb6adfa6779913943320c9deca795e38
 import doctest
 
 ##################################################
