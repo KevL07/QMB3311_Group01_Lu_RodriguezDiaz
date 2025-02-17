@@ -72,7 +72,7 @@ def matrix_inverse(mat_in):
                  
 # Exercise 2
 
-def logit_like(y, x, beta+0, beta_1):
+def logit_like(y, x, beta_0, beta_1):
     """Calculates the log-likelihood for a single observation.
     """
     probability = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
