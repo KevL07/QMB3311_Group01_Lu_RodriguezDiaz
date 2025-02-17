@@ -25,6 +25,7 @@
 
 import numpy as np
 import math
+import log
 import sys
 import doctest
 
@@ -68,16 +69,37 @@ def matrix_inverse(mat_in):
                  
 # Exercise 2
 
-def logit_like(y, x, beta_0, beta_1):
-    """Calculates the log-likelihood for a single observation.
-    """
-    probability = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
-    
-    probability = min(max(probability, 0.0000001), 0.9999999)  
-   
-    log_likelihood_function = y * np.log(probability) + (1 - y) * np.log(1 - probability)
-    
-    return log_likelihood_function 
+def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
+    """Calculates the log-likelihood of observation (y; x), returning
+ the natural log of the function "logit" if y = 1 or the log of the function 
+ 1 minus "logit" if y = 0
+ 
+>>> log_likelihood(1,3,-2,0.7)
+    -0.7
+>>> log_likelihood(0,1,2,1)
+    -3.0
+>>> log_likelihood(1,2,3,4.5)
+    0.0
+>>> log_likelihood(2,3,0.4,-0.6)
+    None
+"""     
+    logit_probability = logit(x_i, beta_0, beta_1)
+     
+    # if y = 1
+    if y_i == 1:
+        return log(logit_probability)
+    # if y = 0
+    elif y_i  == 0:
+         return log(1 - logit_probability)
+    else:
+         print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
+         return None
+
+    # e ** (beta_0 + beta_1 * x_i) / (1 + e ** (beta_0 + beta_1 * x_i)) = a
+    # if y_i = 0
+    # log_e(1-(a))
+    # if y_i = 1
+    # log_e(a)
     
 def logit_like_sum(y, x, beta_0, beta_1):
     """  Calculates the sum of the log-likelihood across all obersvation, 
