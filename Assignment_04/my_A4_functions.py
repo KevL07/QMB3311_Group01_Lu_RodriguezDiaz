@@ -174,7 +174,7 @@ def CESutility_multi(x, a, r):
     
     inside = 0
     for i in range(len(x)):
-        inside += a[i] ** (1 - r) * x[i] ** r
+        inside += a[i]**(1-r)*x[i]**r
         
     return round(inside ** (1 / r), 1)
 
