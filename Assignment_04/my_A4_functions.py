@@ -25,7 +25,6 @@
 
 import numpy as np
 import math
-import log
 import sys
 import doctest
 
@@ -87,19 +86,19 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
      
     # if y = 1
     if y_i == 1:
-        return log(logit_probability)
+        return math.log(logit_probability)
     # if y = 0
     elif y_i  == 0:
-         return log(1 - logit_probability)
+         return math.log(1 - logit_probability)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
 
     # e ** (beta_0 + beta_1 * x_i) / (1 + e ** (beta_0 + beta_1 * x_i)) = a
     # if y_i = 0
-    # log_e(1-(a))
+    # math.log_e(1-(a))
     # if y_i = 1
-    # log_e(a)
+    # math.log_e(a)
     
 def logit_likelihood_sum(y, x, beta_0, beta_1):
     """  Calculates the sum of the log-likelihood across all obersvation, 
