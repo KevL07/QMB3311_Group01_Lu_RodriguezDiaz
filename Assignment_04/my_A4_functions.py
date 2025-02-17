@@ -172,12 +172,6 @@ def CESutility_multi(x, a, r):
     None
     """
     
-    x = np.array(x)
-    a = np.array(a)
-    
-    if min(x) < 0 or min(a) < 0:
-        return None
-    
     inside = 0
     for i in range(len(x)):
         inside += a[i] ** (1 - r) * x[i] ** r
