@@ -72,6 +72,13 @@ def matrix_inverse(mat_in):
                  
 # Exercise 2
 
+def logit_like(y, x, beta+0, beta_1):
+    """Calculates the log-likelihood for a single observation.
+    """
+    probability = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
+    log_likelihood_function = y * np.log(probability) + (1 - y) * np.log(1 - probability)
+    return log_likelihood_function 
+    
 def logit_like_sum(y, x, beta_0, beta_1):
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
@@ -116,7 +123,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     >>> logit_like_grad([1, 0, 1], [1, 1, 1], 0.0, math.log(5))
     [-0.5, -0.5]
     >>> logit_like_grad([1, 0, 1], [3, 3, 3], 0.0, math.log(2))
-    [-2/3, -2.0]
+    [-0.67, -2.0]
     """
     
     x = np.array(x)
@@ -138,7 +145,7 @@ def CESutility_multi(x, a, r):
     
     >>> CESutility_multi([2, 3], [0.5, 0.5], 0.5)
     2.4
-    >>> CCESutility_multi([1, 2, 3], [0,3 0.4, 0.3], 1)
+    >>> CESutility_multi([1, 2, 3], [0.3, 0.4, 0.3], 1)
     2.0
     >>> CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
     None
@@ -147,13 +154,17 @@ def CESutility_multi(x, a, r):
     x = np.array(x)
     a = np.array(a)
     
-    if np.min(x) < 0 or np.min(a) < 0:
+    if min(x) < 0 or min(a) < 0:
         print("x and a must be non-negative.")
+        return None
+    
+    if r == 0:
+        print("r cannot be zero")
         return None
     
     inside = 0
     for i in range(len(x)):
-        inside += a[i]**(1-r)*x[i]**r
+        inside += a[i] ** (1-r) * x[i] ** r
         
     return round(inside ** (1/r), 1)
 
