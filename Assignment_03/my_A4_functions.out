@@ -3,19 +3,19 @@ Trying:
 Expecting:
     2.4
 **********************************************************************
-File "__main__", line 145, in __main__.CESutility_multi
+File "__main__", line 155, in __main__.CESutility_multi
 Failed example:
     CESutility_multi([2, 3], [0.5, 0.5], 0.5)
 Expected:
     2.4
 Got:
-    4.9
+    6.0
 Trying:
     CESutility_multi([1, 2, 3], [0.3, 0.4, 0.3], 1)
 Expecting:
     2.0
 **********************************************************************
-File "__main__", line 147, in __main__.CESutility_multi
+File "__main__", line 157, in __main__.CESutility_multi
 Failed example:
     CESutility_multi([1, 2, 3], [0.3, 0.4, 0.3], 1)
 Expected:
@@ -27,13 +27,12 @@ Trying:
 Expecting:
     None
 **********************************************************************
-File "__main__", line 149, in __main__.CESutility_multi
+File "__main__", line 159, in __main__.CESutility_multi
 Failed example:
     CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
 Expected:
     None
-Got:
-    x and a must be non-negative.
+Got nothing
 Trying:
     logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], 0.0, 0.0)
 Expecting:
@@ -69,7 +68,7 @@ Trying:
 Expecting:
     -2.12
 **********************************************************************
-File "__main__", line 87, in __main__.logit_like_sum
+File "__main__", line 97, in __main__.logit_like_sum
 Failed example:
     logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
 Expected:
@@ -81,7 +80,7 @@ Trying:
 Expecting:
     -2.25
 **********************************************************************
-File "__main__", line 89, in __main__.logit_like_sum
+File "__main__", line 99, in __main__.logit_like_sum
 Failed example:
     logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
 Expected:
@@ -93,7 +92,7 @@ Trying:
 Expecting:
     -2.08
 **********************************************************************
-File "__main__", line 91, in __main__.logit_like_sum
+File "__main__", line 101, in __main__.logit_like_sum
 Failed example:
     logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
 Expected:
@@ -106,7 +105,7 @@ Expecting:
     array([[0.6, -0.7],
            [-0.2, 0.4]])
 **********************************************************************
-File "__main__", line 6, in __main__.matrix_inverse
+File "__main__", line 43, in __main__.matrix_inverse
 Failed example:
     matrix_inverse(np.array([[4, 7], [2, 6]]))
 Expected:
@@ -121,7 +120,7 @@ Expecting:
     array([[-2.0, 1.0],
            [1.5, -0.5]])
 **********************************************************************
-File "__main__", line 9, in __main__.matrix_inverse
+File "__main__", line 46, in __main__.matrix_inverse
 Failed example:
     matrix_inverse(np.array([[1, 2], [3, 4]]))
 Expected:
@@ -135,25 +134,25 @@ Trying:
 Expecting:
     None
 **********************************************************************
-File "__main__", line 12, in __main__.matrix_inverse
+File "__main__", line 49, in __main__.matrix_inverse
 Failed example:
     matrix_inverse(np.array([[2, 3], [4, 6]]))
 Expected:
     None
 Got:
-    Error: Determined cannot be zeero
+    Error: Determined cannot be zero
 Trying:
     matrix_inverse(np.array([[1, 1], [1, 1]]))
 Expecting:
     None
 **********************************************************************
-File "__main__", line 14, in __main__.matrix_inverse
+File "__main__", line 51, in __main__.matrix_inverse
 Failed example:
     matrix_inverse(np.array([[1, 1], [1, 1]]))
 Expected:
     None
 Got:
-    Error: Determined cannot be zeero
+    Error: Determined cannot be zero
 2 items had no tests:
     __main__
     __main__.logit_like

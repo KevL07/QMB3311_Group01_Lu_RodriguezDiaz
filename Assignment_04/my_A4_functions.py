@@ -148,7 +148,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
 # Exercise 4
 
 def CESutility_multi(x, a, r):
-    """ Evaluates the consumer's utiity for more than two goods, where x is a
+    """ Evaluates the consumers utiity for more than two goods, where x is a
     vector of quantities of goods consumed and a is a vector of weighted
     parameters for each good and the subscript i indicates the ith element of 
     each vector
