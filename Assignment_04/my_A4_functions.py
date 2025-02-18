@@ -67,7 +67,7 @@ def matrix_inverse(mat_in):
             for j in range(2):
                 mat_out[i, j] = ((-1)**(i+j)*mat_in[1-i,1-j])/det
                 
-        return np.round(mat_out, 1)
+        return np.round(mat_out,2)
                  
 # Exercise 2
 
@@ -121,7 +121,7 @@ def logit_likelihood_sum(y, x, beta_0, beta_1):
     for i in range(len(y)):
         logit_likelihood += log_likelihood(y[i], x[i], beta_0, beta_1)
         
-    return round(logit_likelihood, 2)
+    return round(logit_likelihood,2)
 
 # Exercise 3
 
@@ -153,7 +153,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     probability_error = y - logit_link_function
     
-    return [round(probability_error.sum(), 1), round((probability_error * x).sum(), 1)]                                                  
+    return [round(probability_error.sum(), 2), round((probability_error * x).sum(), 2)]                                                  
     
 # Exercise 4
 
@@ -185,7 +185,7 @@ def CESutility_multi(x, a, r):
     for i in range(len(x)):
         inside += a[i]**(1-r)*x[i]**r
         
-    return round(inside ** (1 / r), 1)
+    return round((inside ** (1-r)),2)
 
 # Only function definitions above this point. 
 
