@@ -153,7 +153,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     [-0.67, -2.0]
     """
     
-       logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
+    logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     probability_error = y - logit_link_function
     
     return [round(probability_error.sum(), 1), round((probability_error * x).sum(), 1)]                                                  
