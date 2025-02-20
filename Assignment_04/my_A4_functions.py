@@ -116,11 +116,16 @@ def logit_likelihood_sum(y, x, beta_0, beta_1):
     -2.08
     """
     
-    logit_likelihood = 0
+    logit_likelihood_sum = 0
     for i in range(len(y)):
-        logit_likelihood += log_likelihood(y[i], x[i], beta_0, beta_1)
+        logit
+    if y[i] == 1:
+        logit_sum = math.log(logit)
+    elif y[i] == 0:
+       logit_sum = math.log(1-logit)
+    logit_likelihood_summed += logit_sum
         
-    return round(logit_likelihood,2)
+    return round(logit_likelihood_summed,2)
 
 # Exercise 3
 
