@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 """
 ##################################################
 #
@@ -38,71 +38,36 @@ def logit(x_i:float, beta_0:float, beta_1:float):
 
 # Exercise 1
 
-mat_in = np.array([[4,7],[2,6]])
-
 def matrix_inverse(mat_in):
     """ Calculates the inverse of a two-by-two matrix using two nested loops.
     
     >>> matrix_inverse(np.array([[4,7],[2,6]]))
-    array([[0.6,-0.7],
-           [-0.2,0.4]])
+    array([[0.6,-0.2],
+           [-0.7,0.4]])
     >>> matrix_inverse(np.array([[1,2],[3,4]]))
-    array([[-2.0,1.0],
-           [1.5,-0.5]])
+    array([[-2.0,1.5],
+           [1.0,-0.5]])
     >>> matrix_inverse(np.array([[2,3],[4,6]]))
     None
     >>> matrix_inverse(np.array([[1,1],[1,1]]))
     None
     """
     
-    det = mat_in[0,0]*mat_in[1,1]-mat_in[0,1]*mat_in[1,0]
+    det = mat_in[0,0]* mat_in[1,1]- mat_in[0,1]* mat_in[1,0]
     
     if det == 0:
         print("Error: Determinant cannot be zero")
         return None
-    else:
-        mat_out = np.zeros((2,2))
-        for i in range(2):
-            for j in range(2):
-                mat_out[i, j] = ((-1)**(i+j)*mat_in[1-i,1-j])/det
+    mat_out = np.zeros((2,2))
+    for i in range(2):
+        for j in range(2):
+            mat_out[i, j] = ((-1)** (i+j) *mat_in[1-i,1-j]) / det
                 
-        return np.round(mat_out,2)
+    return mat_out
                  
 # Exercise 2
 
-def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
-    """Calculates the log-likelihood of observation (y; x), returning
- the natural log of the function "logit" if y = 1 or the log of the function 
- 1 minus "logit" if y = 0
- 
->>> log_likelihood(1,3,-2,0.7)
-    -0.7
->>> log_likelihood(0,1,2,1)
-    -3.0
->>> log_likelihood(1,2,3,4.5)
-    0.0
->>> log_likelihood(2,3,0.4,-0.6)
-    None
-"""     
-    logit_probability = logit(x_i, beta_0, beta_1)
-     
-    # if y = 1
-    if y_i == 1:
-        return math.log(logit_probability)
-    # if y = 0
-    elif y_i  == 0:
-         return math.log(1 - logit_probability)
-    else:
-         print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
-         return None
-
-    # e ** (beta_0 + beta_1 * x_i) / (1 + e ** (beta_0 + beta_1 * x_i)) = a
-    # if y_i = 0
-    # math.log_e(1-(a))
-    # if y_i = 1
-    # math.log_e(a)
-    
-def logit_likelihood_sum(y, x, beta_0, beta_1):
+def logit_likelihood_sum(y:list , x:list , beta_0, beta_1):
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
@@ -116,14 +81,15 @@ def logit_likelihood_sum(y, x, beta_0, beta_1):
     -2.08
     """
     
-    logit_likelihood_sum = 0
+    logit_likelihood_summed = 0
     for i in range(len(y)):
-        logit
-    if y[i] == 1:
-        logit_sum = math.log(logit)
-    elif y[i] == 0:
-       logit_sum = math.log(1-logit)
-    logit_likelihood_summed += logit_sum
+        logit = math.exp(beta_0 + x[i] * beta_1) / (1 + math.exp(beta_0 + x[i] * beta_1))
+        if y[i] == 1:
+            logit_sum = math.log(logit)
+        elif y[i] == 0:
+            logit_sum = math.log(1-logit)
+    
+        logit_likelihood_summed += logit_sum
         
     return round(logit_likelihood_summed,2)
 
@@ -153,11 +119,20 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     [-0.67, -2.0]
     """
     
-    logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
-    probability_error = y - logit_link_function
+    grad_beta0 = 0
+    grad_beta1 = 0
     
-    return [round(probability_error.sum(), 1), round((probability_error * x).sum(), 1)]                                                  
-    return [round(probability_error.sum(), 2), round((probability_error * x).sum(), 2)]    
+    for i in range(len(y)):
+        logit_2 = logit(x[i], beta_0, beta_1)
+        grad_beta0 += (y[i] - logit_2)
+        grad_beta1 += x[i] * (y[i] - logit_2)
+    return np.array([grad_beta0, grad_beta1])
+    
+    #logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
+   #probability_error = y - logit_link_function
+    
+    #return [round(probability_error.sum(), 1), round((probability_error * x).sum(), 1)]                                                  
+    #return [round(probability_error.sum(), 2), round((probability_error * x).sum(), 2)]    
                                                    
     
 # Exercise 4
@@ -172,7 +147,7 @@ def CESutility_multi(x, a, r):
     2.4
     >>> CESutility_multi([1, 2, 3], [0.3, 0.4, 0.3], 1)
     2.0
-    >>> CESutility_multi([1, -2, 3], [0.3, 0.4, 0.3], 0.5)
+    >>> CESutility_multi([1, -2, 3], [0.3, 0.4, -0.3], 0.5)
     None
     """
     
@@ -186,12 +161,11 @@ def CESutility_multi(x, a, r):
             print("a must be a nonnegative")
             return None
     
-    inside = 0
-    for i in range(len(x)):
-        inside += a[i]**(1-r)*x[i]**r
-        
-    return round((inside ** (1-r)),2)
-
+    if r <= 0:
+        print("r must be positive.")
+    else:
+        Util = sum(a[i] * (x[i] ** r) for i in range(len(x)))
+        return Util ** (1/r)
 # Only function definitions above this point. 
 
 
