@@ -171,7 +171,7 @@ def CESutility_multi(x, a, r): # expected input/output? (-2)
     else:
         inside=0
         for i in range(len(x)):
-            inside += a[i]**(1-r) + x[i]**r # failed to include a^(1-r) and issue with for loop (-3)
+            inside += a[i]**(1-r) * x[i]**r # failed to include a^(1-r)  (-2)
         return inside ** (1/r)
 # Only function definitions above this point. 
 
