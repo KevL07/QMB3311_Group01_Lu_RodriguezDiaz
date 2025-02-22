@@ -33,7 +33,7 @@ import doctest
 
 # Only function definitions here - no other calculations. 
 
-def logit(x_i:float, beta_0:float, beta_1:float):
+def logit(x_i:float, beta_0:float, beta_1:float): # expected output? (-1)
     return math.exp(beta_0 + beta_1 * x_i) / (1 + math.exp(beta_0 + beta_1 * x_i))
 
 # Exercise 1
@@ -52,22 +52,26 @@ def matrix_inverse(mat_in):
     >>> matrix_inverse(np.array([[1,1],[1,1]]))
     None
     """
-    
+    # Test cases calculations incorrect (-2)
+    # Test cases do not match output. (-2)
     det = mat_in[0,0]* mat_in[1,1]- mat_in[0,1]* mat_in[1,0]
-    
+
     if det == 0:
         print("Error: Determinant cannot be zero")
         return None
     mat_out = np.zeros((2,2))
     for i in range(2):
         for j in range(2):
-            mat_out[i, j] = ((-1)** (i+j) *mat_in[1-i,1-j]) / det
+            mat_out[i, j] = ((-1)** (i+j) *mat_in[1-i,1-j]) / det # as stated in class, this does not provide the solution. (-2)
                 
     return mat_out
-                 
+ 
+np.linalg.inv(np.array([[4,7],[2,6]])) # this is how to check the function you created (see how it differs from test cases)
+np.linalg.inv(np.array([[1,2],[3,4]]))     
+           
 # Exercise 2
 
-def logit_likelihood_sum(y:list , x:list , beta_0, beta_1):
+def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) Incorrect function name (-1)
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
@@ -80,18 +84,17 @@ def logit_likelihood_sum(y:list , x:list , beta_0, beta_1):
     >>> logit_likelihood_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
     -2.08
     """
-    
+# missing cases to check for issues in length of vectors matching and issues with y list (-2)
     logit_likelihood_summed = 0
     for i in range(len(y)):
-        logit = math.exp(beta_0 + x[i] * beta_1) / (1 + math.exp(beta_0 + x[i] * beta_1))
+        logit = math.exp(beta_0 + x[i] * beta_1) / (1 + math.exp(beta_0 + x[i] * beta_1)) # could have called logit funtion, better yet, logit_like
         if y[i] == 1:
             logit_sum = math.log(logit)
         elif y[i] == 0:
-            logit_sum = math.log(1-logit)
-    
+            logit_sum = math.log(1-logit)    
         logit_likelihood_summed += logit_sum
         
-    return round(logit_likelihood_summed,2)
+    return logit_likelihood_summed
 
 # Exercise 3
 
@@ -124,9 +127,10 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     
     for i in range(len(y)):
         logit_2 = logit(x[i], beta_0, beta_1)
-        grad_beta0 += (y[i] - logit_2)
+        
+        grad_beta0 += (y[i] - logit_2) # clever, but needs error handling in above (what happens if y is not 1 or 0)? (-1)
         grad_beta1 += x[i] * (y[i] - logit_2)
-    return np.array([grad_beta0, grad_beta1])
+    return [grad_beta0, grad_beta1] # to match test case output (-1)
     
     #logit_link_function = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
    #probability_error = y - logit_link_function
@@ -137,7 +141,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> float:
     
 # Exercise 4
 
-def CESutility_multi(x, a, r):
+def CESutility_multi(x, a, r): # expected input/output? (-2)
     """ Evaluates the consumers utiity for more than two goods, where x is a
     vector of quantities of goods consumed and a is a vector of weighted
     parameters for each good and the subscript i indicates the ith element of 
@@ -150,7 +154,8 @@ def CESutility_multi(x, a, r):
     >>> CESutility_multi([1, -2, 3], [0.3, 0.4, -0.3], 0.5)
     None
     """
-    
+    # Test cases calculations incorrect (-2)
+    # failed to check lengths of vectors (-1)
     for i in x:
         if i < 0:
             print("x must be a nonnegative")
@@ -164,8 +169,10 @@ def CESutility_multi(x, a, r):
     if r <= 0:
         print("r must be positive.")
     else:
-        Util = sum(a[i] * (x[i] ** r) for i in range(len(x)))
-        return Util ** (1/r)
+        inside=0
+        for i in range(len(x)):
+            inside += a[i]**(1-r) + x[i]**r # failed to include a^(1-r) and issue with for loop (-3)
+        return inside ** (1/r)
 # Only function definitions above this point. 
 
 
@@ -193,3 +200,5 @@ if __name__ == "__main__":
 ##################################################
 # End
 ##################################################
+
+# Did not provide full output of doctest, only the number of pass fails (-3)
