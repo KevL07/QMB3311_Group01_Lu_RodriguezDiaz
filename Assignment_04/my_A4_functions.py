@@ -54,17 +54,13 @@ def matrix_inverse(mat_in):
     """
     # Test cases calculations incorrect (-2)
     # Test cases do not match output. (-2)
-    det = mat_in[0,0]* mat_in[1,1]- mat_in[0,1]* mat_in[1,0]
-
+     det = mat_in[0, 0] * mat_in[1, 1] - mat_in[0, 1] * mat_in[1, 0]
     if det == 0:
-        print("Error: Determinant cannot be zero")
+        print("Matrix is not invertible.")
         return None
-    mat_out = np.zeros((2,2))
-    for i in range(2):
-        for j in range(2):
-            mat_out[i, j] = ((-1)** (i+j) *mat_in[1-i,1-j]) / det # as stated in class, this does not provide the solution. (-2)
-                
+    mat_out = np.array([[mat_in[1, 1], -mat_in[0, 1]],[-mat_in[1, 0], mat_in[0, 0]]]) / det
     return mat_out
+ 
  
 np.linalg.inv(np.array([[4,7],[2,6]])) # this is how to check the function you created (see how it differs from test cases)
 np.linalg.inv(np.array([[1,2],[3,4]]))     
