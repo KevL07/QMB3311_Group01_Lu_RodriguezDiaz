@@ -36,6 +36,18 @@ import doctest
 def logit(x_i:float, beta_0:float, beta_1:float): # expected output? (-1)
     return math.exp(beta_0 + beta_1 * x_i) / (1 + math.exp(beta_0 + beta_1 * x_i))
 
+def logit_like(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
+    logit_probability = logit(x_i, beta_0, beta_1)
+    # if y = 1
+    if y_i == 1:
+        return log(logit_probability)
+    # if y = 0
+    elif y_i  == 0:
+         return log(1 - logit_probability)
+    else:
+         print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
+         return None
+
 # Exercise 1
 
 def matrix_inverse(mat_in):
@@ -54,7 +66,7 @@ def matrix_inverse(mat_in):
     """
     # Test cases calculations incorrect (-2)
     # Test cases do not match output. (-2)
-     det = mat_in[0, 0] * mat_in[1, 1] - mat_in[0, 1] * mat_in[1, 0]
+    det = mat_in[0, 0] * mat_in[1, 1] - mat_in[0, 1] * mat_in[1, 0]
     if det == 0:
         print("Matrix is not invertible.")
         return None
@@ -73,24 +85,32 @@ def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) In
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
     over all observation.
     
-    >>> logit_likelihood_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
+    >>> logit_like_sum([1, 0, 1], [2, 3, 5], 0.5, -0.2)
     -2.12
-    >>> logit_likelihood_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
+    >>> logit_like_sum([0, 1, 1], [1, 4, 6], -0.3, 0.7)
     -2.25
-    >>> logit_likelihood_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
+    >>> logit_like_sum([1, 1, 0], [2, 2, 2], 0.1, -0.1)
     -2.08
     """
 # missing cases to check for issues in length of vectors matching and issues with y list (-2)
+    y_error = False
+    length_error = False
+    for i in y:
+        if i != 1 and != 0
+            y_error = True
+    if y_error = True:
+        print("Y must be 0 or 1")
+    if len(x) != len(y):
+        print("X and Y list must match in length")
+        length_error = True
+    if y_error = True or length_error = True:
+        return None
     logit_likelihood_summed = 0
     for i in range(len(y)):
-        logit = math.exp(beta_0 + x[i] * beta_1) / (1 + math.exp(beta_0 + x[i] * beta_1)) # could have called logit funtion, better yet, logit_like
-        if y[i] == 1:
-            logit_sum = math.log(logit)
-        elif y[i] == 0:
-            logit_sum = math.log(1-logit)    
-        logit_likelihood_summed += logit_sum
-        
-    return logit_likelihood_summed
+        if y[i] in [0,1]:
+            logit_likelihood_summed_i = logit_like(y[i], x[i], beta_0, beta_1)
+            logit_likelihood_summed  =  logit_likelihood_summed + logit_likelihood_summed_i
+    return logit_likelihood_summed 
 
 # Exercise 3
 
