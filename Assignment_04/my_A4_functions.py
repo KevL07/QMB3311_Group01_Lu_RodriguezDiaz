@@ -93,17 +93,17 @@ def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) In
     -2.08
     """
 # missing cases to check for issues in length of vectors matching and issues with y list (-2)
-    y_error = False
-    length_error = False
+    y_error == False
+    length_error == False
     for i in y:
-        if i != 1 and != 0
-            y_error = True
-    if y_error = True:
+        if i != 1 and i != 0:
+            y_error == True
+    if y_error == True:
         print("Y must be 0 or 1")
     if len(x) != len(y):
         print("X and Y list must match in length")
-        length_error = True
-    if y_error = True or length_error = True:
+        length_error == True
+    if y_error == True or length_error == True:
         return None
     logit_likelihood_summed = 0
     for i in range(len(y)):
@@ -208,11 +208,17 @@ def CESutility_multi(x, a, r): # expected input/output? (-2)
 # Choose good examples that will test interesting cases. 
 # Make sure they all work correctly. 
 
+
+# if __name__ == "__main__":
+    # with open("my_A4_functions.out", "w") as f:
+        # result = doctest.testmod(verbose=True)
+       # f.write(str(result) + "\n") 
+
+
 if __name__ == "__main__":
 
     with open("my_A4_functions.out", "w") as f:
         print(doctest.testmod(verbose = True), file = f)
-
 ##################################################
 # End
 ##################################################
