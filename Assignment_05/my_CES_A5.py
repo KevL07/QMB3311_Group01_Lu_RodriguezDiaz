@@ -56,13 +56,13 @@ def CESutility_valid(x:float, y:float,r:float) -> float:
     the consumption of a non-negative amount of good x and y considering r, the
     positive degree to which the two goods are complements or subsitutes.
     
->>> CESutility_valid(-1,2,5)
+    >>> CESutility_valid(-1,2,5)
     None
->>> CESutility_valid(2,-2,2)
+    >>> CESutility_valid(2,-2,2)
     None
->>> CESutility_valid(3,2.5,0)
+    >>> CESutility_valid(3,2.5,0)
     None
->>> CESutility_valid(3,2.5,4.25)
+    >>> CESutility_valid(3,2.5,4.25)
     3.28
     """ # indent the above to match the indent of rest of chunk for readability
     error = False
@@ -87,15 +87,15 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     """Evaluates whether a consumer's mix of goods x and y are in budget 
     considering the specific customer's wealth (w) alongside prices p_x and p_y.
     
->>> CESutility_in_budget(2,3,3,-1,2,20)
+    >>> CESutility_in_budget(2,3,3,-1,2,20)
     None
->>> CESutility_in_budget(0,2,4,1,-3,20)
+    >>> CESutility_in_budget(0,2,4,1,-3,20)
     None
->>> CESutility_in_budget(1,2,-5,3,4,20)
+    >>> CESutility_in_budget(1,2,-5,3,4,20)
     None
->>> CESutility_in_budget(10,15,3,6,6,20)
+    >>> CESutility_in_budget(10,15,3,6,6,20)
     None
->>> CESutility_in_budget(1.25,2,4,4,4,20)
+    >>> CESutility_in_budget(1.25,2,4,4,4,20)
     2.07
     """
     # Checks if prices are negative
@@ -108,5 +108,53 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
         return None
     
     return CESutility_valid(x, y, r)
+
+ # CESdemand_calc() function
+ 
+def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
+    """
+    Calculates the optimal x* and y* values that maximize the function 
+    CES_utility_in_budget(), without returning a value of None.
+    
+    >>> CESdemand_calc(2, 4, 4, 20)
+    [10.0, 10.0]
+    >>> CESdemand_calc(3, 2, 3, 30)
+    [17.16, 12.84]
+    >>> CESdemand_calc(1, 5, 10, 50)
+    [33.33, 16.67]
+    """
+    
+    # x* = (p_x ** (-1/r) / (p_x ** (-1/r) + p_y ** (-1/r))) * w
+    # y* = (p_y ** (-1/r) / (p_x ** (-1/r) + p_y ** (-1/r))) * w
+    
+    denominator = (p_x ** (-1/r)) + (p_y ** (-1/r))
+    optimal_x = (p_x ** (-1/r)) / denominator * w
+    optimal_y = (p_y ** (-1/r)) / denominator * w
+
+    return [round(optimal_x, 2), round(optimal_y, 2)]
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

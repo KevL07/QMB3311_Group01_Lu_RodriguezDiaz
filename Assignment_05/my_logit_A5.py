@@ -140,7 +140,7 @@ def logit_d_i(x_i:float, k:float) -> float:
 # d_i = x_i if k = 1
 # d_i = underfined oterwise,
     
-# helper function logit_dLi_dbk(y_i, x_i, beta_0, beta_1)
+# logit_dLi_dbk() helper function
 
 def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) -> float:
     """
@@ -197,3 +197,4 @@ def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) ->
 
 
 
+u
