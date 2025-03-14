@@ -22,8 +22,7 @@
 
 # import name_of_module
 
-from math import exp
-from math import log
+import math
 
 ##################################################
 # Previous Functions
@@ -42,7 +41,7 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     0.79
     """
     logit_function_exponent = beta_0 + x * beta_1  
-    logit_function = exp(logit_function_exponent) / (1 + exp(logit_function_exponent))
+    logit_function = math.exp(logit_function_exponent) / (1 + math.exp(logit_function_exponent))
     
     return round(logit_function, 2)
 
@@ -68,10 +67,10 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
      
     # if y = 1
     if y_i == 1:
-        return log(logit_probability)
+        return math.log(logit_probability)
     # if y = 0
     elif y_i  == 0:
-         return log(1 - logit_probability)
+         return math.log(1 - logit_probability)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
@@ -116,4 +115,27 @@ def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) In
             logit_likelihood_summed_i = logit_like(y[i], x[i], beta_0, beta_1)
             logit_likelihood_summed  =  logit_likelihood_summed + logit_likelihood_summed_i
     return logit_likelihood_summed 
+
+# helper function 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
