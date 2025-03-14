@@ -54,7 +54,7 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
  the natural log of the function "logit" if y = 1 or the log of the function 
  1 minus "logit" if y = 0
  
->>> log_likelihood(1,3,-2,0.7)
+     >>> log_likelihood(1,3,-2,0.7)
     -0.7
 >>> log_likelihood(0,1,2,1)
     -3.0
@@ -83,7 +83,7 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
 
 # logit_like_sum() from Assignment 4
 
-def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) Incorrect function name (-1)
+def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float:# expected output? (-1) Incorrect function name (-1)
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
@@ -116,7 +116,32 @@ def logit_like_sum(y:list , x:list , beta_0, beta_1): # expected output? (-1) In
             logit_likelihood_summed  =  logit_likelihood_summed + logit_likelihood_summed_i
     return logit_likelihood_summed 
 
-# helper function 
+# logit_d_i() helper function
+
+def logit_d_i(x_i:float,k:float) -> float:
+    """ Aids in calculating the term d_i in the gradient vector.
+
+    >>> logit_d_i(2,0)
+    1
+    >>> logit_d_i(3,1)
+    3
+    >>> logit_d_i(5,2)
+    None
+    """
+    
+    if k == 0:
+        return 1 
+    elif k == 1:
+        return x_i
+    else:
+        return None
+    
+# d_i = 1 if k = 0
+# d_i = x_i if k = 1
+# d_i = underfined oterwise,
+    
+# helper function logit_dLi_dbk(y_i,x_i,beta_0,beta_1)
+
 
 
 
