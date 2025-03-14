@@ -50,18 +50,18 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 
 # logit_like() from Assignment 3
 
-def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
+def logit_like(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     """Calculates the log-likelihood of observation (y; x), returning
     the natural log of the function "logit" if y = 1 or the log of the function 
     1 minus "logit" if y = 0
  
-     >>> log_likelihood(1,3,-2,0.7)
+     >>> log_like(1,3,-2,0.7)
     -0.7
-    >>> log_likelihood(0,1,2,1)
+    >>> log_like(0,1,2,1)
     -3.0
-    >>> log_likelihood(1,2,3,4.5)
+    >>> log_like(1,2,3,4.5)
     0.0
-    >>> log_likelihood(2,3,0.4,-0.6)
+    >>> log_like(2,3,0.4,-0.6)
     None
     """     
     logit_probability = logit(x_i, beta_0, beta_1)
@@ -84,7 +84,7 @@ def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
 
 # logit_like_sum() from Assignment 4
 
-def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float:# expected output? (-1) Incorrect function name (-1)
+def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float: # expected output? (-1) Incorrect function name (-1)
     """  Calculates the sum of the log-likelihood across all obersvation, 
     returning the sum of either the log of the function l(x; beta_0; beta_1) if
     y_i = 1 or the log of the function (1 - l(x; beta_0; beta_1)) if y_i = 0,
@@ -98,8 +98,9 @@ def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float:# expect
     -2.08
     """
 # missing cases to check for issues in length of vectors matching and issues with y list (-2)
-    y_error == False
-    length_error == False
+    y_error = False
+    length_error = False
+    
     for i in y:
         if i != 1 and i != 0:
             y_error == True
