@@ -33,11 +33,11 @@ import math
 def logit(x:float, beta_0:float, beta_1:float) -> float:
     """Calculates the logit link function
 
->>> logit(3,-2,0.7)
+    >>> logit(3,-2,0.7)
     0.52
->>> logit(1,0,1)
+    >>> logit(1,0,1)
     0.73
->>> logit(-1,0.5,-0.8)
+    >>> logit(-1,0.5,-0.8)
     0.79
     """
     logit_function_exponent = beta_0 + x * beta_1  
@@ -51,18 +51,18 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
 
 def log_likelihood(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     """Calculates the log-likelihood of observation (y; x), returning
- the natural log of the function "logit" if y = 1 or the log of the function 
- 1 minus "logit" if y = 0
+    the natural log of the function "logit" if y = 1 or the log of the function 
+    1 minus "logit" if y = 0
  
      >>> log_likelihood(1,3,-2,0.7)
     -0.7
->>> log_likelihood(0,1,2,1)
+    >>> log_likelihood(0,1,2,1)
     -3.0
->>> log_likelihood(1,2,3,4.5)
+    >>> log_likelihood(1,2,3,4.5)
     0.0
->>> log_likelihood(2,3,0.4,-0.6)
+    >>> log_likelihood(2,3,0.4,-0.6)
     None
-"""     
+    """     
     logit_probability = logit(x_i, beta_0, beta_1)
      
     # if y = 1
@@ -118,8 +118,8 @@ def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float:# expect
 
 # logit_d_i() helper function
 
-def logit_d_i(x_i:float,k:float) -> float:
-    """ Aids in calculating the term d_i in the gradient vector.
+def logit_d_i(x_i:float, k:float) -> float:
+    """ Calculates the term d_i in the gradient vector.
 
     >>> logit_d_i(2,0)
     1
@@ -140,7 +140,12 @@ def logit_d_i(x_i:float,k:float) -> float:
 # d_i = x_i if k = 1
 # d_i = underfined oterwise,
     
-# helper function logit_dLi_dbk(y_i,x_i,beta_0,beta_1)
+# helper function logit_dLi_dbk(y_i, x_i, beta_0, beta_1)
+
+def logit_dLi_dbk(y_i:int, x_i:float, beta_0:float, beta_1:int): -> float:
+    """ Calculate an individual term in the sum of the gradient vector
+    
+    
 
 
 
