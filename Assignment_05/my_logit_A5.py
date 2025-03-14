@@ -103,20 +103,24 @@ def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float: # expec
     
     for i in y:
         if i != 1 and i != 0:
-            y_error == True
-    if y_error == True:
+            y_error = True
+            
+    if y_error:
         print("Y must be 0 or 1")
+        
     if len(x) != len(y):
         print("X and Y list must match in length")
-        length_error == True
-    if y_error == True or length_error == True:
+        length_error = True
+        
+    if y_error or length_error:
         return None
+    
     logit_likelihood_summed = 0
     for i in range(len(y)):
-        if y[i] in [0,1]:
             logit_likelihood_summed_i = logit_like(y[i], x[i], beta_0, beta_1)
-            logit_likelihood_summed  =  logit_likelihood_summed + logit_likelihood_summed_i
-    return logit_likelihood_summed 
+            logit_likelihood_summed  +=  logit_likelihood_summed_i
+            
+    return round(logit_likelihood_summed, 2)
 
 # logit_d_i() Helper Function
 
