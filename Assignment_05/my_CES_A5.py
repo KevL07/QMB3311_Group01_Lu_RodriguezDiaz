@@ -133,7 +133,7 @@ def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
     optimal_x = (p_x ** (-1/r)) / denominator * w
     optimal_y = (p_y ** (-1/r)) / denominator * w
 
-    return [round(optimal_x, 2), round(optimal_y, 2)]
+    return (round(optimal_x, 2), round(optimal_y, 2))
  
 # maximize_CES() Function
 
