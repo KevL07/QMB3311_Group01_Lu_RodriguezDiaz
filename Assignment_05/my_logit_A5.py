@@ -142,11 +142,39 @@ def logit_d_i(x_i:float, k:float) -> float:
     
 # helper function logit_dLi_dbk(y_i, x_i, beta_0, beta_1)
 
-def logit_dLi_dbk(y_i:int, x_i:float, beta_0:float, beta_1:int): -> float:
-    """ Calculate an individual term in the sum of the gradient vector
+def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) -> float:
+    """
+    Calculates an individual term in the sum of the gradient vector using the logit function.
     
+    >>> logit_dLi_dbk(1, 2, 0.5, 0.5, 0)
+    0.62
+    >>> logit_dLi_dbk(0, 2, 0.5, 0.5, 1)
+    -1.24
+    >>> logit_dLi_dbk(1, 2, 0.5, 0.5, 2)
+    None
+    """
     
+    # if y_i = 1: d_i * (1 - logit(x_i, beta_0, beta_1))
+    # if y_i = 0: d_i * (-logit(x_i, beta_0, beta_1))
+    # otherwise, undefined
+    
+    d_i = logit_d_i(x_i, k)
+    if d_i is None:
+        return None
 
+    # logit() function
+    probability = logit(x_i, beta_0, beta_1)  
+
+    if y_i == 1:
+        result = d_i * (1 - probability)
+    elif y_i == 0:
+        result = -d_i * probability
+    else:
+        print("y_i must equal either 0 or 1")
+        return None
+
+    return round(result, 2)
+    
 
 
 
