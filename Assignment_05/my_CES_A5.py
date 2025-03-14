@@ -22,6 +22,9 @@
 
 # import name_of_module
 
+import numpy as np
+import doctest
+
 ##################################################
 # Previous Functions
 ##################################################
@@ -109,11 +112,10 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
     
     return CESutility_valid(x, y, r)
 
- # CESdemand_calc() function
+# CESdemand_calc() Function
  
 def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
-    """
-    Calculates the optimal x* and y* values that maximize the function 
+    """Calculates the optimal x* and y* values that maximize the function 
     CES_utility_in_budget(), without returning a value of None.
     
     >>> CESdemand_calc(2, 4, 4, 20)
@@ -133,11 +135,40 @@ def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
 
     return [round(optimal_x, 2), round(optimal_y, 2)]
  
+# maximize_CES() Function
 
+def maximize_CES(x_min: float, x_max: float, y_min: float, y_max: float, step: float, r: float, p_x: float, p_y: float, w: float) -> list:
+    """Function that finds values of x and y that maximize 
+    CESutility_in_budget(x, y, r, p_x, p_y, w) for given r, p_x, p_y, and w.
 
+    >>> maximize_CES(0, 10, 0, 10, 0.5, 2, 4, 4, 20)
+    [10.0, 10.0]
+    >>> maximize_CES(0, 5, 0, 5, 1, 1, 2, 3, 10)
+    [5.0, 5.0]
+    >>> maximize_CES(0, 6, 0, 6, 2, 3, 2, 2, 30)
+    [6.0, 6.0]
+    """
+    x_list = np.arange(x_min, x_max + step, step)
+    y_list = np.arange(y_min, y_max + step, step)
 
+    max_CES = float('-inf')
+    # indices for optimal (x, y)
+    i_max, j_max = 0, 0  
 
+    for i in range(len(x_list)):
+        for j in range(len(y_list)):
+            utility = CESutility_in_budget(x_list[i], y_list[j], r, p_x, p_y, w)
 
+            if utility != None and utility > max_CES:
+                max_CES = utility
+                i_max, j_max = i, j
+                
+    return (round(x_list[i_max], 2), round(y_list[j_max], 2))
+
+# Run exercises - doctest
+
+if __name__ == "__main__":
+    doctest.testmod()
 
 
 

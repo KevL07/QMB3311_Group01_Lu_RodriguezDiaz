@@ -23,6 +23,7 @@
 # import name_of_module
 
 import math
+import doctest
 
 ##################################################
 # Previous Functions
@@ -116,7 +117,7 @@ def logit_like_sum(y:list, x:list, beta_0:float, beta_1:float) -> float:# expect
             logit_likelihood_summed  =  logit_likelihood_summed + logit_likelihood_summed_i
     return logit_likelihood_summed 
 
-# logit_d_i() helper function
+# logit_d_i() Helper Function
 
 def logit_d_i(x_i:float, k:float) -> float:
     """ Calculates the term d_i in the gradient vector.
@@ -140,7 +141,7 @@ def logit_d_i(x_i:float, k:float) -> float:
 # d_i = x_i if k = 1
 # d_i = underfined oterwise,
     
-# logit_dLi_dbk() helper function
+# logit_dLi_dbk() Helper Function
 
 def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) -> float:
     """
@@ -175,8 +176,10 @@ def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) ->
 
     return round(result, 2)
     
+# Run exercises - doctest
 
-
+if __name__ == "__main__":
+    doctest.testmod()
 
 
 
