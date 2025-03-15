@@ -133,7 +133,7 @@ def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
     optimal_x = (p_x ** (-1/r)) / denominator * w
     optimal_y = (p_y ** (-1/r)) / denominator * w
 
-    return (round(optimal_x, 2), round(optimal_y, 2))
+    return [round(optimal_x, 2), round(optimal_y, 2)]
  
 # maximize_CES() Function
 
@@ -142,7 +142,7 @@ def maximize_CES(x_min: float, x_max: float, y_min: float, y_max: float, step: f
     CESutility_in_budget(x, y, r, p_x, p_y, w) for given r, p_x, p_y, and w.
 
     >>> maximize_CES(0, 10, 0, 10, 0.5, 2, 4, 4, 20)
-    [10.0, 10.0]
+    [2.5, 2.5]
     >>> maximize_CES(0, 5, 0, 5, 1, 1, 2, 3, 10)
     [5.0, 5.0]
     >>> maximize_CES(0, 6, 0, 6, 2, 3, 2, 2, 30)
@@ -163,7 +163,7 @@ def maximize_CES(x_min: float, x_max: float, y_min: float, y_max: float, step: f
                 max_CES = utility
                 i_max, j_max = i, j
                 
-    return (round(x_list[i_max], 2), round(y_list[j_max], 2))
+    return [round(x_list[i_max], 2), round(y_list[j_max], 2)]
 
 # Run exercises - doctest
 
