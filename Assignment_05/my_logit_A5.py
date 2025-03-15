@@ -55,7 +55,7 @@ def logit_like(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     the natural log of the function "logit" if y = 1 or the log of the function 
     1 minus "logit" if y = 0
  
-     >>> log_like(1,3,-2,0.7)
+    >>> log_like(1,3,-2,0.7)
     -0.7
     >>> log_like(0,1,2,1)
     -3.0
