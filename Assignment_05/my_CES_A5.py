@@ -4,7 +4,7 @@
 #
 # QMB 3311: Python for Business Analytics
 #
-# Name: Kevin Lu and Frances Rodriguez Diaz 
+# Name: Frances Rodriguez Diaz 
 #
 # Date: 3/14/2025
 # 
