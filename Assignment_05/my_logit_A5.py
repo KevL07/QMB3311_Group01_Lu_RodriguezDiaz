@@ -142,9 +142,9 @@ def logit_d_i(x_i:float, k:float) -> float:
     else:
         return None
     
-# d_i = 1 if k = 0
-# d_i = x_i if k = 1
-# d_i = underfined oterwise,
+    # d_i = 1 if k = 0
+    # d_i = x_i if k = 1
+    # d_i = underfined otherwise
     
 # logit_dLi_dbk() Helper Function
 
