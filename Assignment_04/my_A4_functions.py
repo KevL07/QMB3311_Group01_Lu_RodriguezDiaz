@@ -40,10 +40,10 @@ def logit_like(y_i:float, x_i:float, beta_0:float, beta_1:float) -> float:
     logit_probability = logit(x_i, beta_0, beta_1)
     # if y = 1
     if y_i == 1:
-        return log(logit_probability)
+        return math.log(logit_probability)
     # if y = 0
     elif y_i  == 0:
-         return log(1 - logit_probability)
+         return math.log(1 - logit_probability)
     else:
          print("y_i must equal 1 or 0; Event is likely to happen (1) or not (0)")
          return None
