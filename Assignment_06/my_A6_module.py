@@ -76,8 +76,8 @@ def exp_x_diff(x: float, z: float) -> float:
         return None
     return round(math.exp(x) - z, 3)
     
-    
     return math.exp(x) - z
+
 
 def ln_z_bisect(z, a_0, b_0, num_iter):
     """
@@ -104,6 +104,7 @@ def ln_z_bisect(z, a_0, b_0, num_iter):
         else:
             a_0 = mid
     return (a_0 + b_0) / 2
+
 
 def exp_x_diff_prime(x, z):
     """
