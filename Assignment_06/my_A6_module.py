@@ -26,6 +26,7 @@ Created on Sun Mar 30 17:25:58 2025
 
 import doctest
 import math
+import warnings
 
 ##################################################
 # Functions
@@ -130,7 +131,7 @@ def exp_x_diff_prime(x: float, z: float) -> float:
     >>> exp_x_diff_prime(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: z must be positive
+    ValueError: z must be positive and not equal to 0
     >>> exp_x_diff_prime(0, 0)
     Traceback (most recent call last):
         ...
@@ -167,7 +168,7 @@ def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
 
         x0 = x0 - fx / dfx
 
-    print("Warning: Reached max iterations before exp_x_diff(x_i, z) < tol")
+    warnings.warn("Reached max iterations before exp_x_diff(x_i, z) < tol", RuntimeWarning)
     return round(x0, 3)
 
 
@@ -218,7 +219,7 @@ def ln_z_fixed_pt(z: float, x0: float, tol: float, num_iter: int) -> float:
 
         x0 = xi_plus1
 
-    print("Warning: Maximum iterations reached before fixed point was found.")
+    warnings.warn("Reached max iterations before fixed point was found.", RuntimeWarning)
     return round(x0, 3)
 
 
