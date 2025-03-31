@@ -146,7 +146,7 @@ def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
         fx = exp_x_diff(x0, z)
         dfx = exp_x_diff_prime(x0, z)
 
-        if fx is None or dfx is None:
+        if fx == None or dfx == None:
             return None
 
         if abs(fx) < tol:
@@ -196,20 +196,18 @@ def ln_z_fixed_pt(z: float, x0: float, tol: float, num_iter: int) -> float:
         return None
 
     for _ in range(num_iter):
-        xi_plus1 = exp_x_fp_fn(x0, z)
+        xi_+1 = exp_x_fp_fn(x0, z)
 
-        if xi_plus1 == None:
+        if xi_+1 == None:
             return None
 
-        if abs(xi_plus1 - x0) < tol:
-            return round(xi_plus1, 3)
+        if abs(xi_+1 - x0) < tol:
+            return round(xi_+1, 3)
 
-        x0 = xi_plus1
+        x0 = xi_+1
 
     print("Warning: Maximum iterations reached before fixed point was found.")
     return round(x0, 3)
 
 if __name__ == "__main__":
     doctest.testmod()
-        >>> 
-    
