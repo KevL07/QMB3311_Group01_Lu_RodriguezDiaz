@@ -128,7 +128,7 @@ def exp_x_diff_prime(x: float, z: float) -> float:
 
 def ln_z_newton(z: float, x_0: float, tol: float, num_iter: int) -> float:
     """
-    Approximates ln(z) using Newton's method.
+    Approximates the natrual log of z, ln(z), using Newton's method.
 
     >>> round(ln_z_newton(2, 1, math.pow(10, -10), 20), 3)
     0.693
@@ -157,14 +157,25 @@ def ln_z_newton(z: float, x_0: float, tol: float, num_iter: int) -> float:
     return round(x_0, 3)
 
 
-def exp_x_fp_fn(x, z):
+def exp_x_fp_fn(x: float, z: float) -> float:
     """
-    Returns the value of the fixed-point function g(x).
+    Returns the value g(x) for a given value of z.
 
-    >>> round(exp_x_fp_fn(1, 2), 5)
-    0.84147
+    >>> round(exp_x_fp_fn(0.5, 2), 3)
+    0.651
+    >>> round(exp_x_fp_fn(1, 5), 3)
+    1.041
+    >>> exp_x_fp_fn(1, -2)
+    Error: z must be positive
+    >>> exp_x_fp_fn(0, 0)
+    Error: z must be positive
     """
+    if z <= 0:
+        print("Error: z must be positive")
+        return None
+    
     return 0.5 * (z - math.exp(x) + 2 * x)
+
 
 def ln_z_fixed_pt(z, x0, tol, num_iter):
     """
