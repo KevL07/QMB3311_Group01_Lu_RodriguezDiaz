@@ -1,0 +1,161 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar 30 17:25:58 2025
+
+@author: Frankie15
+##################################################
+#
+# QMB 3311: Python for Business Analytics
+#
+# Name: Frances Rodriguez Diaz 
+#
+# Date: 3/31/2025
+# 
+##################################################
+#
+# Script for Assignment 6: 
+#
+##################################################
+"""
+
+##################################################
+# Import Required Modules
+##################################################
+
+# import name_of_module
+
+import doctest
+import math
+
+##################################################
+# Functions
+##################################################
+
+def ln_taylor(z: float, n: float) -> float:
+    """
+    Estimates ln(z) by summing the first n terms of the Taylor Series 
+    when z is close to 1.
+        
+    >>> round(ln_taylor(1.5, 10), 3)
+    0.405
+    >>> round(ln_taylor(1.1, 10), 3)
+    0.095
+    >>> round(ln_taylor(1, 10), 3)
+    0.0
+    >>> ln_taylor(0, 10)
+    Error: z must be positive and not equal to 0
+    """
+    
+    if z <= 0:
+        print("Error: z must be positive and not equal to 0")
+        return None
+        
+    result = 0 
+    for k in range(1, n + 1):
+        n_term = ((-1) ** (k - 1)) * ((1/k) * ((z - 1) ** k))
+        result += n_term
+    return result
+
+
+def exp_x_diff(x: float, z: float) -> float:
+    """
+    Returns the value of e ** x - z
+
+    >>> round(exp_x_diff(1, 2), 3)
+    0.718
+    >>> round(exp_x_diff(2, 5), 3)
+    2.389
+    >>> exp_x_diff(1, -2)
+    Error: z must be positive
+    >>> exp_x_diff(0, 0)
+    Error: z must be positive
+    """
+    
+    if z <= 0:
+        print("Error: z must be positive")
+        return None
+    return round(math.exp(x) - z, 3)
+    
+    
+    return math.exp(x) - z
+
+def ln_z_bisect(z, a_0, b_0, num_iter):
+    """
+    Produces an algorithm for calculating the natural logarithm of z. 
+
+    >>> round(ln_z_bisect(2, 0, 2, 20), 5)
+    0.69315
+    >>> ln_z_bisect(2, 2, 3, 20)
+    Error: exp_x_diff must have opposite signs at the interval end points
+    >>> ln_z_bisect(-1, 0, 2, 20)
+    Error: z must be positive
+    """
+    if exp_x_diff(a_0, z) == None or exp_x_diff(b_0, z) == None:
+        return None
+    
+    if exp_x_diff(a_0, z) * exp_x_diff(b_0, z) >= 0:
+        print("Error: exp_x_diff must have opposite signs at the interval end points")
+        return None
+
+    for _ in range(num_iter):
+        mid = (a_0 + b_0) / 2
+        if exp_x_diff(mid, z) * exp_x_diff(a_0, z) < 0:
+            b_0 = mid
+        else:
+            a_0 = mid
+    return (a_0 + b_0) / 2
+
+def exp_x_diff_prime(x, z):
+    """
+    Returns the derivative of exp_x_diff(x, z).
+
+    >>> round(exp_x_diff_prime(math.log(2), 2), 5)
+    2.0
+    """
+    return math.exp(x)
+
+def ln_z_newton(z, x0, tol, num_iter):
+    """
+    Approximates ln(z) using Newton's method.
+
+    >>> round(ln_z_newton(2, 1, 1e-10, 20), 5)
+    0.69315
+    """
+    for _ in range(num_iter):
+        f = exp_x_diff(x0, z)
+        f_prime = exp_x_diff_prime(x0, z)
+        if abs(f) < tol:
+            return x0
+        x0 = x0 - f / f_prime
+    print("Warning: Did not converge within the specified number of iterations.")
+    return x0
+
+def exp_x_fp_fn(x, z):
+    """
+    Returns the value of the fixed-point function g(x).
+
+    >>> round(exp_x_fp_fn(1, 2), 5)
+    0.84147
+    """
+    return 0.5 * (z - math.exp(x) + 2 * x)
+
+def ln_z_fixed_pt(z, x0, tol, num_iter):
+    """
+    Approximates ln(z) using the fixed-point method.
+
+    >>> round(ln_z_fixed_pt(2, 1, 1e-10, 50), 5)
+    0.69315
+    """
+    for _ in range(num_iter):
+        x1 = exp_x_fp_fn(x0, z)
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    print("Warning: Did not converge within the specified number of iterations.")
+    return x0
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+        >>> 
+    """
