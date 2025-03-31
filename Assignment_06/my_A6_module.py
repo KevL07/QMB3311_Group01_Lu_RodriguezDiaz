@@ -45,7 +45,6 @@ def ln_taylor(z: float, n: float) -> float:
     >>> ln_taylor(0, 10)
     Error: z must be positive and not equal to 0
     """
-    
     if z <= 0:
         print("Error: z must be positive and not equal to 0")
         return None
@@ -70,7 +69,6 @@ def exp_x_diff(x: float, z: float) -> float:
     >>> exp_x_diff(0, 0)
     Error: z must be positive
     """
-    
     if z <= 0:
         print("Error: z must be positive")
         return None
@@ -92,7 +90,6 @@ def ln_z_bisect(z: float, a_0: float, b_0: float, num_iter: int) -> float:
     >>> ln_z_bisect(-1, 0, 2, 20)
     Error: z must be positive
     """
-    
     if exp_x_diff(a_0, z) == None or exp_x_diff(b_0, z) == None:
         return None
     
@@ -122,7 +119,6 @@ def exp_x_diff_prime(x: float, z: float) -> float:
     >>> exp_x_diff_prime(0, 0)
     Error: z must be positive
     """
-    
     if z <= 0:
         print("Error: z must be positive")
         return None
@@ -130,21 +126,36 @@ def exp_x_diff_prime(x: float, z: float) -> float:
     return math.exp(x)
 
 
-def ln_z_newton(z, x0, tol, num_iter):
+def ln_z_newton(z: float, x_0: float, tol: float, num_iter: int) -> float:
     """
     Approximates ln(z) using Newton's method.
 
-    >>> round(ln_z_newton(2, 1, 1e-10, 20), 5)
-    0.69315
+    >>> round(ln_z_newton(2, 1, math.pow(10, -10), 20), 3)
+    0.693
+    >>> round(ln_z_newton(5, 2, math.pow(10, -10), 20), 3)
+    1.609
+    >>> ln_z_newton(-1, 1, math.pow(10, -10), 20)
+    Error: z must be positive
     """
+    if z <= 0:
+        print("Error: z must be positive")
+        return None
+
     for _ in range(num_iter):
-        f = exp_x_diff(x0, z)
-        f_prime = exp_x_diff_prime(x0, z)
-        if abs(f) < tol:
-            return x0
-        x0 = x0 - f / f_prime
-    print("Warning: Did not converge within the specified number of iterations.")
-    return x0
+        fx = exp_x_diff(x_0, z)
+        dfx = exp_x_diff_prime(x_0, z)
+
+        if fx == None or dfx == None:
+            return None
+
+        if abs(fx) < tol:
+            return round(x_0, 3)
+
+        x_0 = x_0 - fx / dfx
+        
+    print("Warning: Reached max iterations before exp_x_diff(x_i, z) < tol")
+    return round(x_0, 3)
+
 
 def exp_x_fp_fn(x, z):
     """
