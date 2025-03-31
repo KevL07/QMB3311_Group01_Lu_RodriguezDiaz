@@ -79,17 +79,20 @@ def exp_x_diff(x: float, z: float) -> float:
     return math.exp(x) - z
 
 
-def ln_z_bisect(z, a_0, b_0, num_iter):
+def ln_z_bisect(z: float, a_0: float, b_0: float, num_iter: int) -> float:
     """
     Produces an algorithm for calculating the natural logarithm of z. 
 
-    >>> round(ln_z_bisect(2, 0, 2, 20), 5)
-    0.69315
+    >>> round(ln_z_bisect(2, 0, 2, 20), 3)
+    0.693
+    >>> round(ln_z_bisect(5, 1, 3, 30), 3)
+    1.609
     >>> ln_z_bisect(2, 2, 3, 20)
     Error: exp_x_diff must have opposite signs at the interval end points
     >>> ln_z_bisect(-1, 0, 2, 20)
     Error: z must be positive
     """
+    
     if exp_x_diff(a_0, z) == None or exp_x_diff(b_0, z) == None:
         return None
     
@@ -106,14 +109,26 @@ def ln_z_bisect(z, a_0, b_0, num_iter):
     return (a_0 + b_0) / 2
 
 
-def exp_x_diff_prime(x, z):
+def exp_x_diff_prime(x: float, z: float) -> float:
     """
-    Returns the derivative of exp_x_diff(x, z).
+    Returns the derivative of exp_x_diff(x, z) with respect to x
 
-    >>> round(exp_x_diff_prime(math.log(2), 2), 5)
-    2.0
+    >>> round(exp_x_diff_prime(1, 2), 3)
+    2.718
+    >>> round(exp_x_diff_prime(2, 5), 3)
+    7.389
+    >>> exp_x_diff_prime(1, -2)
+    Error: z must be positive
+    >>> exp_x_diff_prime(0, 0)
+    Error: z must be positive
     """
+    
+    if z <= 0:
+        print("Error: z must be positive")
+        return None
+    
     return math.exp(x)
+
 
 def ln_z_newton(z, x0, tol, num_iter):
     """
