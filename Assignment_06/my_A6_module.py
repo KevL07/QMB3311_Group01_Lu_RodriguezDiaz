@@ -26,17 +26,17 @@ Created on Sun Mar 30 17:25:58 2025
 
 import doctest
 import math
-import warnings
 
 ##################################################
 # Functions
 ##################################################
 
+
 def ln_taylor(z: float, n: float) -> float:
     """
     Estimates ln(z) by summing the first n terms of the Taylor Series 
     when z is close to 1.
-
+        
     >>> round(ln_taylor(1.5, 10), 3)
     0.405
     >>> round(ln_taylor(1.1, 10), 3)
@@ -44,19 +44,16 @@ def ln_taylor(z: float, n: float) -> float:
     >>> round(ln_taylor(1, 10), 3)
     0.0
     >>> ln_taylor(0, 10)
-    Traceback (most recent call last):
-        ...
-    ValueError: z must be positive and not equal to 0
+    Error: z must be positive and not equal to 0
     """
     if z <= 0:
-        raise ValueError("z must be positive and not equal to 0")
+        print("Error: z must be positive and not equal to 0")
+        return None
         
     result = 0 
-    
     for k in range(1, n + 1):
         n_term = ((-1) ** (k - 1)) * ((1/k) * ((z - 1) ** k))
         result += n_term
-    
     return result
 
 
@@ -69,16 +66,14 @@ def exp_x_diff(x: float, z: float) -> float:
     >>> round(exp_x_diff(2, 5), 3)
     2.389
     >>> exp_x_diff(1, -2)
-    Traceback (most recent call last):
-        ...
-    ValueError: z must be positive and not equal to 0
+    Error: z must be positive
     >>> exp_x_diff(0, 0)
-    Traceback (most recent call last):
-        ...
-    ValueError: z must be positive and not equal to 0
+    Error: z must be positive
     """
     if z <= 0:
-        raise ValueError("z must be positive and not equal to 0")
+        print("Error: z must be positive")
+        return None
+    return round(math.exp(x) - z, 3)
     
     return math.exp(x) - z
 
@@ -117,12 +112,12 @@ def ln_z_bisect(z: float, a_0: float, b_0: float, num_iter: int) -> float:
             a_0 = m_i
             f_a = f_m
 
-    return round((a_0 + b_0) / 2, 3)
+    return (a_0 + b_0) / 2
 
 
 def exp_x_diff_prime(x: float, z: float) -> float:
     """
-    Returns the derivative of exp_x_diff(x, z) with respect to x
+    Calculates the derivative of exp_x_diff(x, z) with respect to x.
 
     >>> round(exp_x_diff_prime(1, 2), 3)
     2.718
@@ -139,8 +134,9 @@ def exp_x_diff_prime(x: float, z: float) -> float:
     """
     if z <= 0:
         raise ValueError("z must be positive and not equal to 0")
-    
-    return math.exp(x)
+
+    derivative_output = math.exp(x)
+    return derivative_output
 
 
 def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
@@ -164,17 +160,17 @@ def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
         dfx = exp_x_diff_prime(x0, z)
 
         if abs(fx) < tol:
-            return round(x0, 3)
+            return x0
 
         x0 = x0 - fx / dfx
 
-    warnings.warn("Reached max iterations before exp_x_diff(x_i, z) < tol", RuntimeWarning)
-    return round(x0, 3)
+    print("Exceeded allowed number of iterations")
+    return None
 
 
 def exp_x_fp_fn(x: float, z: float) -> float:
     """
-    Returns the value g_x for a given value of z.
+    Returns the value of the fixed-point function g(x).
 
     >>> round(exp_x_fp_fn(0.5, 2), 3)
     0.651
@@ -215,13 +211,13 @@ def ln_z_fixed_pt(z: float, x0: float, tol: float, num_iter: int) -> float:
         xi_plus1 = exp_x_fp_fn(x0, z)
 
         if abs(xi_plus1 - x0) < tol:
-            return round(xi_plus1, 3)
+            return xi_plus1
 
         x0 = xi_plus1
 
-    warnings.warn("Reached max iterations before fixed point was found.", RuntimeWarning)
-    return round(x0, 3)
+    print("Exceeded allowed number of iterations")
+    return None
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
     doctest.testmod()
