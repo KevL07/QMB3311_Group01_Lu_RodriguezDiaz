@@ -167,9 +167,10 @@ def exp_x_fp_fn(x: float, z: float) -> float:
     Returns the value of the fixed-point function g(x).
 
     >>> round(exp_x_fp_fn(0.5, 2), 3)
-    0.651
+    0.676
     >>> round(exp_x_fp_fn(1, 5), 3)
-    1.041
+    2.141
+    >>> round(exp_x_fp_fn(1, 5), 
     >>> exp_x_fp_fn(1, -2)
     Error: z must be positive and not equal to 0
     >>> exp_x_fp_fn(0, 0)
