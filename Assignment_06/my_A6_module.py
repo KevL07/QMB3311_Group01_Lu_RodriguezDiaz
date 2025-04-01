@@ -33,7 +33,7 @@ def ln_taylor(z: float, n: float) -> float:
     """
     Estimates ln(z) by summing the first n terms of the Taylor Series 
     when z is close to 1.
-        
+
     >>> round(ln_taylor(1.5, 10), 3)
     0.405
     >>> round(ln_taylor(1.1, 10), 3)
@@ -63,12 +63,12 @@ def exp_x_diff(x: float, z: float) -> float:
     >>> round(exp_x_diff(2, 5), 3)
     2.389
     >>> exp_x_diff(1, -2)
-    Error: z must be positive
+    Error: z must be positive and not equal to 0
     >>> exp_x_diff(0, 0)
-    Error: z must be positive
+    Error: z must be positive and not equal to 0
     """
     if z <= 0:
-        print("Error: z must be positive")
+        print("Error: z must be positive and not equal to 0")
         return None
     return math.exp(x) - z
 
