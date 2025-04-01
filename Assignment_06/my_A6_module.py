@@ -90,7 +90,7 @@ def ln_z_bisect(z: float, a_0: float, b_0: float, num_iter: int) -> float:
     f_a = exp_x_diff(a_0, z)
     f_b = exp_x_diff(b_0, z)
 
-    if f_a is None or f_b is None:
+    if f_a == None or f_b == None:
         return None
 
     if f_a * f_b >= 0:
@@ -150,7 +150,7 @@ def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
         fx = exp_x_diff(x0, z)
         dfx = exp_x_diff_prime(x0, z)
 
-        if fx is None or dfx is None:
+        if fx == None or dfx == None:
             return None
 
         if abs(fx) < tol:
@@ -200,7 +200,7 @@ def ln_z_fixed_pt(z: float, x0: float, tol: float, num_iter: int) -> float:
     for _ in range(num_iter):
         xi_plus1 = exp_x_fp_fn(x0, z)
 
-        if xi_plus1 is None:
+        if xi_plus1 == None:
             return None
 
         if abs(xi_plus1 - x0) < tol:
