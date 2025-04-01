@@ -38,8 +38,8 @@ def ln_taylor(z: float, n: float) -> float:
     0.405
     >>> round(ln_taylor(1.1, 10), 3)
     0.095
-    >>> round(ln_taylor(1, 10), 3)
-    0.0
+    >>> ln_taylor(-1, 10)
+    Error: z must be positive and not equal to 0
     >>> ln_taylor(0, 10)
     Error: z must be positive and not equal to 0
     """
