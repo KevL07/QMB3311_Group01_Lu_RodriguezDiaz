@@ -169,8 +169,7 @@ def exp_x_fp_fn(x: float, z: float) -> float:
     >>> round(exp_x_fp_fn(0.5, 2), 3)
     0.676
     >>> round(exp_x_fp_fn(1, 5), 3)
-    2.141
-    >>> round(exp_x_fp_fn(1, 5), 
+    2.141 
     >>> exp_x_fp_fn(1, -2)
     Error: z must be positive and not equal to 0
     >>> exp_x_fp_fn(0, 0)
