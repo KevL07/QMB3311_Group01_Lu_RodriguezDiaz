@@ -56,7 +56,7 @@ def ln_taylor(z: float, n: float) -> float:
 
 def exp_x_diff(x: float, z: float) -> float:
     """
-    Returns the value of e ** x - z
+    Returns the value of e ** x - z.
 
     >>> round(exp_x_diff(1, 2), 3)
     0.718
@@ -70,6 +70,7 @@ def exp_x_diff(x: float, z: float) -> float:
     if z <= 0:
         print("Error: z must be positive and not equal to 0")
         return None
+    
     return math.exp(x) - z
 
 
@@ -132,7 +133,7 @@ def exp_x_diff_prime(x: float, z: float) -> float:
 
 def ln_z_newton(z: float, x0: float, tol: float, num_iter: int) -> float:
     """
-    Approximates ln(z) using Newton's method.
+    Estimates ln(z) using Newton's method.
 
     >>> round(ln_z_newton(2, 1, math.pow(10, -10), 20), 3)
     0.693
@@ -183,7 +184,7 @@ def exp_x_fp_fn(x: float, z: float) -> float:
 
 def ln_z_fixed_pt(z: float, x0: float, tol: float, num_iter: int) -> float:
     """
-    Approximates ln(z) using the fixed point method.
+    Estimates ln(z) using the fixed-point method.
 
     >>> round(ln_z_fixed_pt(2, 1, math.pow(10, -10), 30), 3)
     0.693
