@@ -75,7 +75,7 @@ def exp_x_diff(x: float, z: float) -> float:
 
 def ln_z_bisect(z: float, a_0: float, b_0: float, num_iter: int) -> float:
     """
-    Approximates ln(z) using the bisection method.
+    Estimates ln(z) using the bisection method.
 
     >>> round(ln_z_bisect(2, 0, 2, 20), 3)
     0.693
