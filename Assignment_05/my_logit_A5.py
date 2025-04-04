@@ -148,7 +148,7 @@ def logit_d_i(x_i:float, k:float) -> float:
     
 # logit_dLi_dbk() Helper Function
 
-def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) -> float:
+def logit_dLi_dbk(y_i: int, x_i: float, k: int, beta_0: float, beta_1: float) -> float:
     """
     Calculates an individual term in the sum of the gradient vector using the logit function.
     
@@ -179,30 +179,9 @@ def logit_dLi_dbk(y_i: int, x_i: float, beta_0: float, beta_1: float, k: int) ->
         print("y_i must equal either 0 or 1")
         return None
 
-    return round(result, 2)
+    return result
     
 # Run exercises - doctest
 
 if __name__ == "__main__":
     doctest.testmod()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-u

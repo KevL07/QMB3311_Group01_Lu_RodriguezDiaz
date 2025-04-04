@@ -107,7 +107,7 @@ def CESutility_in_budget(x:float, y:float, r:float, p_x:float, p_y:float, w:floa
         return None
     # Checks if the consumer basket of goods costs more than wealth
     if(p_x * x + p_y * y) > w:
-        print("The consumer basket of goods cannot cost more than wealth.")
+        #print("The consumer basket of goods cannot cost more than wealth.")
         return None
     
     return CESutility_valid(x, y, r)
@@ -129,15 +129,15 @@ def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
     # x* = (p_x ** (-1/r) / (p_x ** (-1/r) + p_y ** (-1/r))) * w
     # y* = (p_y ** (-1/r) / (p_x ** (-1/r) + p_y ** (-1/r))) * w
     
-    denominator = (p_x ** (-1/r)) + (p_y ** (-1/r))
-    optimal_x = (p_x ** (-1/r)) / denominator * w
-    optimal_y = (p_y ** (-1/r)) / denominator * w
+    denominator = (p_x ** (r/(r - 1))) + (p_y ** (r/(r - 1)))
+    optimal_x = (p_x ** (1/(r - 1))) / denominator * w
+    optimal_y = (p_y ** (1/(r - 1))) / denominator * w
 
     return [round(optimal_x, 2), round(optimal_y, 2)]
  
 # maximize_CES() Function
 
-def maximize_CES(x_min: float, x_max: float, y_min: float, y_max: float, step: float, r: float, p_x: float, p_y: float, w: float) -> list:
+def max_CES_xy(x_min: float, x_max: float, y_min: float, y_max: float, step: float, r: float, p_x: float, p_y: float, w: float) -> list:
     """Function that finds values of x and y that maximize 
     CESutility_in_budget(x, y, r, p_x, p_y, w) for given r, p_x, p_y, and w.
 
