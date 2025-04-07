@@ -67,10 +67,10 @@ X_single = credit[credit.columns[1]]  # Only bmaxrate
 
 print("\n--- Testing Likelihood Function ---")
 beta = logit_model_fit_sm.params
-print(my_logit.logit_like_sum_opt(beta, y, X_single))
+print(round(my_logit.logit_like_sum_opt(beta, y, X_single), 4))
 
 print("\n--- Testing Gradient Function ---")
-print(my_logit.logit_like_grad(beta, y, X_single))
+print([round(i, 4) for i in my_logit.logit_like_grad(beta, y, X_single)])
 
 ##################################################
 # Optimization Methods
@@ -88,10 +88,9 @@ soln_nm = minimize(
 )
 
 print("\n--- Nelder-Mead Results ---")
-print(soln_nm.x)
-print(logit_model_fit_sm.params)
-print(soln_nm.fun)
-print(my_logit.logit_like_sum_opt(soln_nm.x, y, X_single))
+print("Coefficients:", [round(i, 4) for i in soln_nm.x])
+print("Log-Likelihood:", round(soln_nm.fun, 4))
+print("Check:", round(my_logit.logit_like_sum_opt(soln_nm.x, y, X_single), 4))
 
 # Powell (DFP)
 soln_dfp = minimize(
@@ -103,10 +102,9 @@ soln_dfp = minimize(
 )
 
 print("\n--- Powell (DFP) Results ---")
-print(soln_dfp.x)
-print(logit_model_fit_sm.params)
-print(soln_dfp.fun)
-print(my_logit.logit_like_sum_opt(soln_dfp.x, y, X_single))
+print("Coefficients:", [round(i, 4) for i in soln_dfp.x])
+print("Log-Likelihood:", round(soln_dfp.fun, 4))
+print("Check:", round(my_logit.logit_like_sum_opt(soln_dfp.x, y, X_single), 4))
 
 # BFGS without gradient
 soln_bfgs = minimize(
@@ -118,10 +116,9 @@ soln_bfgs = minimize(
 )
 
 print("\n--- BFGS (No Gradient) Results ---")
-print(soln_bfgs.x)
-print(logit_model_fit_sm.params)
-print(soln_bfgs.fun)
-print(my_logit.logit_like_sum_opt(soln_bfgs.x, y, X_single))
+print("Coefficients:", [round(i, 4) for i in soln_bfgs.x])
+print("Log-Likelihood:", round(soln_bfgs.fun, 4))
+print("Check:", round(my_logit.logit_like_sum_opt(soln_bfgs.x, y, X_single), 4))
 
 # BFGS with gradient
 soln_bfgs_jac = minimize(
@@ -134,10 +131,9 @@ soln_bfgs_jac = minimize(
 )
 
 print("\n--- BFGS (With Gradient) Results ---")
-print(soln_bfgs_jac.x)
-print(logit_model_fit_sm.params)
-print(soln_bfgs_jac.fun)
-print(my_logit.logit_like_sum_opt(soln_bfgs_jac.x, y, X_single))
+print("Coefficients:", [round(i, 4) for i in soln_bfgs_jac.x])
+print("Log-Likelihood:", round(soln_bfgs_jac.fun, 4))
+print("Check:", round(my_logit.logit_like_sum_opt(soln_bfgs_jac.x, y, X_single), 4))
 
 ##################################################
 # End
