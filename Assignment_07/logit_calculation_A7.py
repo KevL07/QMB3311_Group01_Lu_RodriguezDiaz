@@ -65,8 +65,9 @@ from scipy.optimize import minimize
 # Find out the current directory.
 os.getcwd()
 # Change to a new directory.
-git_path = ''
-os.chdir(git_path + 'Assignment_07')
+# Full working version
+git_path = 'C:\\Users\\anace\\OneDrive - University of Central Florida\\GitHub\\QMB3311_Group01_Lu_RodriguezDiaz'
+os.chdir(git_path + '\\Assignment_07')
 # Check that the change was successful.
 os.getcwd()
 
