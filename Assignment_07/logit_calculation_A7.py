@@ -224,10 +224,12 @@ soln_nm = minimize(
     args=(y.tolist(), X.tolist()),
     method='nelder-mead',
     options={'xtol': 1e-8, 'disp': True, 'maxiter': 1000}
-    )
+)
+
 #--------------------------------------------------
 
 # The parameters:
+print("\n--- Nelder-Mead Results ---")
 print(soln_nm.x)
 # Compare with the estimates from logit_model_fit_sm:
 print(logit_model_fit_sm.params)
@@ -260,10 +262,12 @@ soln_dfp = minimize(
     args=(y.tolist(), X.tolist()),
     method='powell',
     options={'xtol': 1e-8, 'disp': True, 'maxiter': 1000}
-    )
-#--------------------------------------------------
+)
+
+------------------------------
 
 # The parameters:
+print("\n--- Powell (DFP) Results ---")
 print(soln_dfp.x)
 # Compare with the estimates from logit_model_fit_sm:
 print(logit_model_fit_sm.params)
@@ -290,17 +294,20 @@ beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
 #--------------------------------------------------
 # Code goes here.
-soln_bfgs = minimize(
+soln_bfgs_jac = minimize(
     my_logit.logit_like_sum_opt,
     beta_0,
     args=(y.tolist(), X.tolist()),
     method='BFGS',
+    jac=my_logit.logit_like_grad,
     options={'gtol': 1e-8, 'disp': True, 'maxiter': 1000}
-    )
+)
+
 #--------------------------------------------------
 
 
 # The parameters:
+print("\n--- BFGS Results ---")
 print(soln_bfgs.x)
 # Compare with the estimates from logit_model_fit_sm:
 print(logit_model_fit_sm.params)
@@ -341,6 +348,7 @@ soln_bfgs_jac = minimize(
 
 
 # The parameters:
+print("\n--- BFGS (With Gradient) Results ---")
 print(soln_bfgs_jac.x)
 # Compare with the estimates from logit_model_fit_sm:
 print(logit_model_fit_sm.params)
