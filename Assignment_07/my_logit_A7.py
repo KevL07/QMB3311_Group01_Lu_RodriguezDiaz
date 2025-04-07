@@ -34,17 +34,17 @@ def logit(x:float, beta_0:float, beta_1:float) -> float:
     """
     Calculates the logit link function
 
-    >>> logit(3,-2,0.7)
+    >>> round(logit(3,-2,0.7), 2)
     0.52
-    >>> logit(1,0,1)
+    >>> round(logit(1,0,1), 2)
     0.73
-    >>> logit(-1,0.5,-0.8)
+    >>> round(logit(-1,0.5,-0.8), 2)
     0.79
     """
     logit_function_exponent = beta_0 + x * beta_1  
-    logit_function = exp(logit_function_exponent) / (1 + exp(logit_function_exponent))
+    logit_function = math.exp(logit_function_exponent) / (1 + math.exp(logit_function_exponent))
     
-    return round(logit_function, 2)
+    return logit_function
 
     # logit_function = e ** (beta_0 + beta_1 * x) / (1 + e ** (beta_0 + beta_1 * x))
 
@@ -114,7 +114,7 @@ def logit_like_sum(y: list, x: list, beta0: float, beta1: float) -> float:
 
 # logit_di() from Assignment 5
 
-def logit_di(x_i:float, k:float) -> float:
+def logit_di(x_i: float, k: int) -> float:
     """ Calculates the term di in the gradient vector.
 
     >>> logit_di(2,0)
@@ -141,11 +141,11 @@ def logit_dLi_dbk(y_i: int, x_i: float, k: int, beta_0: float, beta_1: float) ->
     """
     Calculates an individual term in the sum of the gradient vector using the logit function.
     
-    >>> logit_dLi_dbk(1, 2, 0.5, 0.5, 0)
-    0.62
-    >>> logit_dLi_dbk(0, 2, 0.5, 0.5, 1)
-    -1.24
-    >>> logit_dLi_dbk(1, 2, 0.5, 0.5, 2)
+    >>> round(logit_dLi_dbk(1, 2, 0, 0.5, 0.5), 2)
+    0.18
+    >>> round(logit_dLi_dbk(0, 2, 1, 0.5, 0.5), 2)
+    -1.64
+    >>> logit_dLi_dbk(1, 2, 2, 0.5, 0.5)
     None
     """
     
@@ -169,6 +169,60 @@ def logit_dLi_dbk(y_i: int, x_i: float, k: int, beta_0: float, beta_1: float) ->
         return None
 
     return result
+
+# logit_like_sum_opt()
+
+def logit_like_sum_opt(beta: list, y: list, x: list) -> float:
+    """
+    Wrapper for logit_like_sum that returns the negative logit_like_sum();
+    employed for optimization
+
+    >>> round(logit_like_sum_opt([0.5, -0.2], [1, 0, 1], [2, 3, 5]), 2)
+    2.12
+    >>> round(logit_like_sum_opt([-0.3, 0.7], [0, 1, 1], [1, 4, 6]), 2)
+    2.25
+    >>> round(logit_like_sum_opt([0.1, -0.1], [1, 1, 0], [2, 2, 2]), 2)
+    2.08
+    >>> logit_like_sum_opt([0.1, 0.2], [1, 0], [3])  # edge case
+    x and y must have the same length
+    """
+    beta_0, beta_1 = beta[0], beta[1]
+    return -logit_like_sum(y, x, beta_0, beta_1)
+
+# logit_like_grad()
+
+def logit_like_grad(beta: list, y: list, x: list) -> list:
+    """
+    Calculates the gradient vector of the likelihood function logit_like_sum_opt()
+
+    >>> grad = logit_like_grad([0.5, -0.2], [1, 0, 1], [2, 3, 5])
+    >>> [round(g, 2) for g in grad]
+    [-0.08, -0.17]    
+    
+    >>> logit_like_grad([-0.3, 0.7], [1, 0], [1])  # edge case: mismatched lengths
+    x and y must have the same length
+
+    >>> logit_like_grad([0.5, 0.6], [1, 2], [3, 4])  # edge case: invalid y
+    y must contain only 0 or 1
+    """
+    if len(x) != len(y):
+        print("x and y must have the same length")
+        return None
+    if not all(yi in (0, 1) for yi in y):
+        print("y must contain only 0 or 1")
+        return None
+
+    beta_0, beta_1 = beta[0], beta[1]
+    grad_0 = 0
+    grad_1 = 0
+
+    for i in range(len(y)):
+        grad_0 += logit_dLi_dbk(y[i], x[i], 0, beta_0, beta_1)
+        grad_1 += logit_dLi_dbk(y[i], x[i], 1, beta_0, beta_1)
+
+    return [round(-grad_0, 4), round(-grad_1, 4)]
+
+# Exercises - doctest
 
 if __name__ == "__main__":
     doctest.testmod()
