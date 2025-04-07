@@ -210,7 +210,6 @@ print(my_logit.logit_like_grad(beta, y, X))
 
 beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
-
 # I suggested beta_0 above as a starting value for x0. 
 # I did this because you generally don't know the optimum
 # until you find it.
@@ -219,8 +218,13 @@ beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
 #--------------------------------------------------
 # Code goes here.
-soln_nm = None
-# Code goes here.
+soln_nm = minimize(
+    my_logit.logit_like_sum_opt,
+    beta_0,
+    args=(y.tolist(), X.tolist()),
+    method='nelder-mead',
+    options={'xtol': 1e-8, 'disp': True, 'maxiter': 1000}
+    )
 #--------------------------------------------------
 
 # The parameters:
@@ -250,8 +254,13 @@ beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
 #--------------------------------------------------
 # Code goes here.
-soln_dfp = None
-# Code goes here.
+soln_dfp = minimize(
+    my_logit.logit_like_sum_opt,
+    beta_0,
+    args=(y.tolist(), X.tolist()),
+    method='powell',
+    options={'xtol': 1e-8, 'disp': True, 'maxiter': 1000}
+    )
 #--------------------------------------------------
 
 # The parameters:
@@ -281,8 +290,13 @@ beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
 #--------------------------------------------------
 # Code goes here.
-soln_bfgs = None
-# Code goes here.
+soln_bfgs = minimize(
+    my_logit.logit_like_sum_opt,
+    beta_0,
+    args=(y.tolist(), X.tolist()),
+    method='BFGS',
+    options={'gtol': 1e-8, 'disp': True, 'maxiter': 1000}
+    )
 #--------------------------------------------------
 
 
@@ -314,8 +328,15 @@ beta_0 = np.zeros(len(logit_model_fit_sm.params))
 
 #--------------------------------------------------
 # Code goes here.
-soln_bfgs_jac = None
-# Code goes here.
+soln_bfgs_jac = minimize(
+    my_logit.logit_like_sum_opt,
+    beta_0,
+    args=(y.tolist(), X.tolist()),
+    method='BFGS',
+    jac=my_logit.logit_like_grad,
+    options={'gtol': 1e-8, 'disp': True, 'maxiter': 1000}
+    )
+
 #--------------------------------------------------
 
 
