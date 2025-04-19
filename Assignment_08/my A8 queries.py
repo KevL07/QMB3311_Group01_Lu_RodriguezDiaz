@@ -30,7 +30,7 @@ import pandas as pd # To read and inspect data
 
 # To estimate linear regression models
 import statsmodels.formula.api as sm
-
+import sqlite3
 
 
 
@@ -43,10 +43,10 @@ import statsmodels.formula.api as sm
 os.getcwd()
 # Change to a new directory.
 git_path = ''
+drive_path = os.getcwd() + '/'  # Add your drive path logic here if needed
 os.chdir(drive_path + git_path + 'assignment_08')
 # Check that the change was successful.
 os.getcwd()
-
 
 
 ##################################################
@@ -58,11 +58,9 @@ os.getcwd()
 
 #--------------------------------------------------
 # Code goes here.
-
-
-# Code goes here.
+con = sqlite3.connect('credit.db')
+cur = con.cursor()
 #--------------------------------------------------
-
 
 
 # b. Read in the applications.csv dataset 
@@ -70,17 +68,12 @@ os.getcwd()
 # called applications in your workspace.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-# Code goes here.
+applications = pd.read_csv('applications.csv')
 #--------------------------------------------------
-
 
 
 # Verify the contents of the data frame.
 applications.dtypes
-
 
 # Inspect a few rows of data.
 applications.head(3)
@@ -89,7 +82,6 @@ applications.tail(3)
 # Check the dimensions of the data.
 applications.index
 applications.columns
-
 
 # Inspect the keys.
 applications[['app_id', 'ssn', 'zip_code']].describe()
@@ -116,15 +108,24 @@ print(reg_model_sm.summary())
 # that is appropriate for the variables.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-
-# Code goes here.
+cur.execute("DROP TABLE IF EXISTS Applications")
+cur.execute('''
+    CREATE TABLE Applications (
+        app_id INTEGER,
+        ssn TEXT,
+        zip_code INTEGER,
+        income REAL,
+        homeownership TEXT,
+        purchases REAL,
+        credit_limit INTEGER
+    )
+''')
 #--------------------------------------------------
 
-# Retrieve the contents of the table to check.
+# e. Populate the table Applications with the observations
+applications.to_sql('Applications', con, if_exists='append', index=False)
 
+# Retrieve the contents of the table to check.
 cur.execute('SELECT * FROM Applications')
 for row in cur.fetchall()[1:20]:
  print(row)
@@ -140,17 +141,11 @@ for row in cur.fetchall()[1:20]:
 # called credit_bureau in your workspace.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-# Code goes here.
+credit_bureau = pd.read_csv('credit_bureau.csv')
 #--------------------------------------------------
-
-
 
 # Verify the contents of the data frame.
 credit_bureau.dtypes
-
 
 # Inspect a few rows of data.
 credit_bureau.head(3)
@@ -159,7 +154,6 @@ credit_bureau.tail(3)
 # Check the dimensions of the data.
 credit_bureau.index
 credit_bureau.columns
-
 
 # Inspect the keys.
 credit_bureau[['ssn', 'zip_code']].describe()
@@ -177,28 +171,28 @@ credit_bureau[['num_bankruptcy']].value_counts()
 # that is appropriate for the variables.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-# Code goes here.
+cur.execute("DROP TABLE IF EXISTS CreditBureau")
+cur.execute('''
+    CREATE TABLE CreditBureau (
+        ssn TEXT,
+        zip_code INTEGER,
+        fico INTEGER,
+        num_late INTEGER,
+        past_def INTEGER,
+        num_bankruptcy INTEGER
+    )
+''')
 #--------------------------------------------------
-
 
 
 # c. Populate the table CreditBureau 
 # with the observations in the data frame credit_bureau.
 
-
 #--------------------------------------------------
-# Code goes here.
-
-
-
-# Code goes here.
+credit_bureau.to_sql('CreditBureau', con, if_exists='append', index=False)
 #--------------------------------------------------
 
 # Retrieve the contents of the table to check.
-
 cur.execute('SELECT * FROM CreditBureau')
 for row in cur.fetchall()[1:20]:
  print(row)
@@ -209,16 +203,17 @@ for row in cur.fetchall()[1:20]:
 # pandas data frame called app_bureau.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-
-# Code goes here.
+query2 = '''
+    SELECT *
+    FROM Applications A
+    JOIN CreditBureau C
+    ON A.ssn = C.ssn AND A.zip_code = C.zip_code
+'''
+app_bureau = pd.read_sql_query(query2, con)
 #--------------------------------------------------
 
 # Verify the contents of the data frame.
 app_bureau.dtypes
-
 
 # Inspect a few rows of data.
 app_bureau.head(3)
@@ -227,7 +222,6 @@ app_bureau.tail(3)
 # Check the dimensions of the data.
 app_bureau.index
 app_bureau.columns
-
 
 # Inspect the keys.
 app_bureau[['app_id', 'ssn', 'zip_code']].describe()
@@ -241,7 +235,6 @@ app_bureau[['homeownership']].value_counts()
 app_bureau[['num_late']].value_counts()
 app_bureau[['past_def']].value_counts()
 app_bureau[['num_bankruptcy']].value_counts()
-
 
 
 # e. Estimate a regression model.
@@ -259,7 +252,6 @@ print(reg_model_sm.summary())
 
 
 
-
 ##################################################
 ### Question 3: Three Tables
 ##################################################
@@ -270,17 +262,11 @@ print(reg_model_sm.summary())
 # called demographic in your workspace.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-# Code goes here.
+demographic = pd.read_csv('demographic.csv')
 #--------------------------------------------------
-
-
 
 # Verify the contents of the data frame.
 demographic.dtypes
-
 
 # Inspect a few rows of data.
 demographic.head(3)
@@ -289,7 +275,6 @@ demographic.tail(3)
 # Check the dimensions of the data.
 demographic.index
 demographic.columns
-
 
 # Inspect the key.
 demographic[['zip_code']].describe()
@@ -303,29 +288,25 @@ demographic[['avg_income', 'density']].describe()
 # that is appropriate for the variables.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-
-# Code goes here.
+cur.execute("DROP TABLE IF EXISTS Demographic")
+cur.execute('''
+    CREATE TABLE Demographic (
+        zip_code INTEGER,
+        avg_income REAL,
+        density REAL
+    )
+''')
 #--------------------------------------------------
-
 
 
 # c. Populate the table Demographic 
 # with the observations in the data frame demographic.
 
-
 #--------------------------------------------------
-# Code goes here.
-
-
-
-# Code goes here.
+demographic.to_sql('Demographic', con, if_exists='append', index=False)
 #--------------------------------------------------
 
 # Retrieve the contents of the table to check.
-
 cur.execute('SELECT * FROM Demographic')
 for row in cur.fetchall()[1:20]:
  print(row)
@@ -338,17 +319,22 @@ for row in cur.fetchall()[1:20]:
 # pandas data frame called purchase_full.
 
 #--------------------------------------------------
-# Code goes here.
-
-
-
-
-# Code goes here.
+query3 = '''
+    SELECT *
+    FROM (
+        SELECT *
+        FROM Applications A
+        JOIN CreditBureau C
+        ON A.ssn = C.ssn AND A.zip_code = C.zip_code
+    ) AS AB
+    JOIN Demographic D
+    ON AB.zip_code = D.zip_code
+'''
+purchase_full = pd.read_sql_query(query3, con)
 #--------------------------------------------------
 
 # Verify the contents of the data frame.
 purchase_full.dtypes
-
 
 # Inspect a few rows of data.
 purchase_full.head(3)
@@ -357,7 +343,6 @@ purchase_full.tail(3)
 # Check the dimensions of the data.
 purchase_full.index
 purchase_full.columns
-
 
 # Inspect the keys.
 purchase_full[['app_id', 'ssn', 'zip_code']].describe()
@@ -389,7 +374,6 @@ reg_model_sm = sm.ols(formula = fmla_str,
 
 # Display a summary table of regression results.
 print(reg_model_sm.summary())
-
 
 
 
@@ -431,4 +415,3 @@ con.close()
 ##################################################
 # End
 ##################################################
-
