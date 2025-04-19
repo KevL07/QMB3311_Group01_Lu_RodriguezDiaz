@@ -57,7 +57,6 @@ os.getcwd()
 # a. Create a new database called credit.db.
 
 #--------------------------------------------------
-# Code goes here.
 con = sqlite3.connect('credit.db')
 cur = con.cursor()
 #--------------------------------------------------
@@ -404,12 +403,15 @@ con.close()
 # cur.execute('DROP TABLE CreditBureau')
 # cur.execute('DROP TABLE Demographic')
 
-# This can get the schema of each of the tables:
-# cur.execute("PRAGMA table_info('Applications')").fetchall()
-# cur.execute("PRAGMA table_info('CreditBureau')").fetchall()
-# cur.execute("PRAGMA table_info('Demographic')").fetchall()
-# which states the names of the variables and the data types.
+# Schema verification - this prints column names and types
+print("\nApplications Table Schema:")
+print(cur.execute("PRAGMA table_info('Applications')").fetchall())
 
+print("\nCreditBureau Table Schema:")
+print(cur.execute("PRAGMA table_info('CreditBureau')").fetchall())
+
+print("\nDemographic Table Schema:")
+print(cur.execute("PRAGMA table_info('Demographic')").fetchall())
 
 
 ##################################################
